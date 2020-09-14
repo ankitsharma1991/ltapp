@@ -1,0 +1,1621 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    tools:context=".fragment.PatientDetail">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:isScrollContainer="false"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/height4"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/height4"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_patient_id"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_registraction_date"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_patient_mobile"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/height3"
+                android:weightSum="1"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanEditText
+
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/patient_detail_patient_no"
+                        android:id="@+id/et_patient_id"
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanEditText
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/patient_detail_patient_date"
+                        android:id="@+id/et_register_date"
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor1"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanEditText
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType="number"
+                        android:maxLength="15"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/patient_detail_patient_mobile_no"
+                        android:paddingTop="3dp"
+                        android:id="@+id/et_mobile_no"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor1"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_height="30dp" />
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/height4"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_patient_age"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="@string/patient_detail_age"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_patient_gender"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="match_parent" />
+
+
+
+                    </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/height3"
+                android:weightSum="1"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanEditText
+
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/patient_detail_patient_age1"
+                        android:paddingTop="3dp"
+                        android:id="@+id/et_dob"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+
+                <custom.AvenirRomanEditText
+
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:paddingRight="5dp"
+                    android:inputType=
+                        "textCapSentences|textAutoCorrect"
+                    android:layout_width="match_parent"
+                    android:background="#00000000"
+                    android:hint="@string/patient_detail_age1"
+                    android:paddingTop="3dp"
+                    android:id="@+id/et_age"
+                    android:textSize="@dimen/textsize"
+                    android:layout_marginLeft="@dimen/height4"
+                    android:textColorHint="@color/hintscolor"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="30dp" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:background="@color/textcolor"
+                    android:layout_marginTop="@dimen/height3"
+                    android:layout_marginLeft="@dimen/height4"
+                    android:layout_marginRight="@dimen/height4"
+                    android:layout_height="0.5dp"/>
+
+                 </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType="textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:hint="@string/patient_detail_patient_male"
+                        android:id="@+id/sp_gender"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor"
+                        android:layout_marginLeft="@dimen/height2"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/height4"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_patient_id_proof"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_Id_no"
+                        android:textSize="@dimen/textsize"
+                        android:id="@+id/tv_id_no"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/create_a_camp_camp_description"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/height3"
+                android:weightSum="1"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+                    <Spinner
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:hint="@string/patient_detail_patient_id_proofno"
+                        android:id="@+id/sp_id"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanEditText
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/patient_detail_id_no"
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:id="@+id/sp_id_number"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor1"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+
+
+                <custom.AvenirRomanEditText
+
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:paddingRight="5dp"
+                    android:inputType=
+                        "textCapSentences|textAutoCorrect"
+                    android:layout_width="match_parent"
+                    android:background="#00000000"
+                    android:hint="@string/create_a_camp_camp_description_here"
+                    android:paddingTop="3dp"
+                    android:textSize="@dimen/textsize"
+                    android:id="@+id/et_address"
+                    android:layout_marginLeft="@dimen/height4"
+                    android:textColorHint="@color/hintscolor"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="30dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:background="@color/textcolor"
+                    android:layout_marginTop="@dimen/height3"
+                    android:layout_marginLeft="@dimen/height4"
+                    android:layout_marginRight="@dimen/height4"
+                    android:layout_height="0.5dp"/>
+
+
+                    </LinearLayout>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/height4"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="@string/patient_detail_patient_died"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_patient_lebelid"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_patient_email"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="match_parent" />
+
+
+                </LinearLayout>
+
+
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/height3"
+                android:weightSum="1"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+                    <Spinner
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:hint="@string/patient_detail_patient_id_proofno"
+                        android:id="@+id/sp_diet"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanEditText
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/patient_detail_patient_lebelidno"
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:id="@+id/et_label_id"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor1"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanEditText
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/patient_detail_patient_emailid"
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:id="@+id/et_email"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor1"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="@dimen/height4"
+            android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content">
+
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patent_detail_medical_id"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="match_parent" />
+
+
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:layout_width="match_parent"
+                    android:text="@string/patent_detail_medical_Rapid"
+                    android:textSize="@dimen/textsize"
+                    android:layout_marginLeft="@dimen/height4"
+                    android:imeOptions="flagNoExtractUi"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="match_parent" />
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="@dimen/height4"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content">
+
+
+
+                <custom.AvenirRomanTextView
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:paddingRight="5dp"
+                    android:inputType=
+                        "textCapSentences|textAutoCorrect"
+                    android:layout_width="match_parent"
+                    android:background="#00000000"
+                    android:hint="@string/patent_detail_medical_patied_"
+                    android:paddingTop="3dp"
+                    android:textSize="@dimen/textsize"
+                    android:id="@+id/tv_patientid"
+                    android:imeOptions="flagNoExtractUi"
+                    android:textColorHint="@color/hintscolor"
+                    android:textColor="@color/textcolor1"
+                    android:layout_marginLeft="@dimen/height4"
+                    android:layout_height="30dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:background="@color/textcolor"
+                    android:layout_marginTop="@dimen/height3"
+                    android:layout_marginLeft="@dimen/height4"
+                    android:layout_marginRight="@dimen/height4"
+                    android:layout_height="0.5dp"/>
+
+
+                </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".5"
+                    android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/sp_rapidtest"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:paddingRight="5dp"
+                android:inputType=
+                    "textCapSentences|textAutoCorrect"
+                android:layout_width="match_parent"
+                android:hint="@string/patient_detail_patient_id_proofno"
+                android:textSize="@dimen/textsize"
+                android:imeOptions="flagNoExtractUi"
+                android:layout_marginLeft="@dimen/height2"
+                android:textColorHint="@color/hintscolor"
+                android:textColor="@color/textcolor"
+                android:layout_height="30dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/textcolor"
+                android:layout_marginTop="@dimen/height3"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_height="0.5dp"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="@dimen/height4"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patent_detail_medical_history"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="match_parent" />
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:text="@string/patient_detail_chronic_disease"
+                        android:textSize="@dimen/textsize"
+                        android:id="@+id/tv_medicalhistory"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+
+
+                </LinearLayout>
+
+          </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/height3"
+                android:weightSum="1"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_height="wrap_content">
+                    <Spinner
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:hint="@string/patient_detail_patient_id_proofno"
+                        android:id="@+id/sp_acute_disease"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_marginLeft="@dimen/height2"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".33"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:hint="@string/patient_detail_patient_id_proofno"
+                        android:id="@+id/sp_chronic_disease"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_marginLeft="@dimen/height2"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor"
+                        android:layout_height="30dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:background="@color/textcolor"
+                        android:layout_marginTop="@dimen/height3"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_height="0.5dp"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="horizontal"
+                    android:layout_weight=".33"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanButton
+                        android:layout_width="30dp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/edit_profileb"
+                        android:layout_marginLeft="@dimen/height2"
+                        android:textColor="@color/textwhite"
+                        android:id="@+id/bt_update"
+                        android:textSize="@dimen/textsize"
+                        android:layout_gravity="left"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:layout_height="30dp" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:src="@drawable/plus"
+                        android:layout_marginLeft="18dp"
+                        android:id="@+id/bt_plus"
+                        android:layout_height="20dp" />
+
+
+
+
+
+
+                </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginTop="@dimen/margin4"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".50"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <Spinner
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:hint="@string/patient_detail_patient_id_proofno"
+                        android:id="@+id/sp_fever"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor"
+                        android:layout_height="30dp" />
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".25"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanButton
+                        android:layout_width="30dp"
+                        android:textAllCaps="false"
+                        android:background="@drawable/plus"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:textColor="@color/textwhite"
+                        android:textSize="@dimen/textsize"
+                        android:layout_gravity="center"
+                        android:id="@+id/bt_addtest"
+                        android:gravity="center"
+                        android:layout_height="30dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".25"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanButton
+                        android:layout_width="30dp"
+                        android:textAllCaps="false"
+                        android:layout_marginRight="@dimen/height4"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:background="@drawable/preview"
+                        android:textColor="@color/textwhite"
+                        android:textSize="@dimen/textsize"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_height="30dp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/textcolor"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginTop="@dimen/height4"
+                android:layout_height="3dp"/>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginTop="@dimen/margin2"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".33"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="Patient "
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".33"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <Spinner
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:hint="@string/patient_detail_patient_id_proofno"
+                        android:id="@+id/sp_patient"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor"
+                        android:layout_height="30dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".33"
+                    android:layout_gravity="left"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <custom.AvenirRomanEditText
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:gravity="left|center"
+                        android:inputType="textCapSentences|textAutoCorrect"
+                        android:hint="search"
+                        android:paddingRight="10dp"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:textSize="@dimen/textsize"
+                        android:textColorHint="@color/hintscolor"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="30dp" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/textcolor"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginTop="@dimen/height4"
+                android:layout_height="0.5dp"/>
+
+
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginTop="@dimen/margin3"
+                android:layout_height="wrap_content">
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="Level Id"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="Name"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="Mobile"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="Total Test"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="Total Cost"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".10"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="Preview"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:text="Process"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+<!--
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginTop="@dimen/margin3"
+                android:layout_height="wrap_content">
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:hint="52"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:hint="sandjsd"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:hint="985545"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:hint="4"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:hint="111"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".10"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                  <ImageView
+                      android:layout_width="20dp"
+                      android:src="@drawable/preview"
+                      android:layout_height="20dp" />
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".15"
+                    android:layout_gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="wrap_content"
+                        android:hint="4555"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize"
+                        android:imeOptions="flagNoExtractUi"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerViewpatient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dividerHeight="1dp"
+                android:padding="10dp" >
+            </android.support.v7.widget.RecyclerView>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+   <!-- -<LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/loginbutton"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="@dimen/height11"
+        android:gravity="center"
+        android:layout_marginRight="@dimen/height11"
+        android:layout_marginBottom="@dimen/height3"
+        android:layout_height="wrap_content">
+
+
+        <custom.AvenirRomanButton
+            android:layout_width="match_parent"
+            android:text="@string/patient_detail_patient_save"
+            android:id="@+id/bt_tariff_continue1"
+            android:textAllCaps="false"
+            android:textColor="@color/textwhite"
+            android:textSize="@dimen/textsizelarge"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#00000000"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+
+
+-->
+
+</LinearLayout>

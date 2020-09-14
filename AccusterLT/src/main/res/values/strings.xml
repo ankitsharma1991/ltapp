@@ -1,0 +1,252 @@
+<resources>
+    <string name="app_name">AccusterLT</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_create_camp">Create A Camp</string>
+    <string name="nav_camp_list">Camp List</string>
+    <string name="nav_register_patient">Register Patient</string>
+    <string name="nav_patient_list">Patient List</string>
+    <string name="nav_package_list">Package List</string>
+    <string name="nav_test_list">Test List</string>
+    <string name="nav_about_us">About Us</string>
+    <string name="nav_help">Help Info</string>
+    <string name="nav_logout">Logout</string>
+    <string name="nav_syn">Sync Data</string>
+
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>HOME</item>
+        <item>Register Patient</item>
+        <item>QC Data</item>
+        <item>Create A Camp</item>
+        <item>Camp List</item>
+        <item>Package List</item>
+        <item>HOME</item>
+        <item>E-Appointments</item>
+        <item>About Us</item>
+        <item>Help Info</item>
+        <item>Report Setting</item>
+        <item>Report</item>
+        <item>Logout</item>
+
+        <item>Patient List</item>
+        <item>Test List</item>
+
+
+        <!-- <item>FORUM</item>
+        <item>IMPOSTAZIONI</item>
+        <item>FACEBOOK</item>
+        <item>TWITTER</item>
+        <item>GOOGLE+</item>
+        <item>YOUTUBE</item>-->
+    </string-array>
+
+    <string name="pid">P ID</string>
+    <string name="labelid">Label ID</string>
+    <string name="sex">Sex</string>
+    <string name="test">Test</string>
+    <string name="name1">Name</string>
+    <string name="cost">Cost</string>
+    <string name="status">Status</string>
+    <string name="preview">Preview</string>
+
+    <string name="activity_title_about_us">About Us</string>
+    <string name="activity_title_privacy_policy">Privacy Policy</string>
+    <string name="action_clear_all">Clear All</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_mark_all_read">Mark All as Read</string>
+    <string name="privacy_policy">Privacy Policy</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_internet">Internet not available</string>
+    <string name="Please_Wait">Please Wait....</string>
+
+    <declare-styleable name="app">
+        <attr name="customFont" format="string"></attr>
+    </declare-styleable>
+
+
+    <!--////////////       Login Activity            |||||||||||||||||||-->
+
+    <string name="login_E_mail_Address">E-mail Address</string>
+    <string name="login_password">Password</string>
+    <string name="login_login">Login</string>
+    <string name="login_register">Sign Up</string>
+    <string name="login_forgot_password">Forgot Password?</string>
+
+
+    <!--////////////       Create A Package fragment            |||||||||||||||||||-->
+    <string name="package_name">Package Name</string>
+    <string name="package_name_here">Package Name Here</string>
+    <string name="test_name">Test Name</string>
+    <string name="test_name_here">Test Name Here</string>
+    <string name="PC">Unit</string>
+    <string name="PC_here">package Here</string>
+    <string name="charges">Charges</string>
+    <string name="discount">Discount</string>
+    <string name="charges_here">Charges Here</string>
+    <string name="add_package_continue">Add Package</string>
+
+    <!--////////////       Create A Camp fragment            |||||||||||||||||||-->
+
+    <string name="create_a_camp_organisantiom_name">Organization Name</string>
+    <string name="create_a_camp_organisantiom_name_here">Organization Name Here</string>
+    <string name="create_a_camp_camp_name">Camp Name</string>
+    <string name="create_a_camp_camp_name_here">Camp Name Here</string>
+    <string name="create_a_camp_camp_description">Address:</string>
+    <string name="create_a_camp_camp_description_here">add address....</string>
+
+    <string name="create_a_camp_cam_startindate">Start Date</string>
+    <string name="create_a_camp_cam_enddate">End Date</string>
+    <string name="create_a_camp_cam_startdate1">4/07/2017</string>
+    <string name="create_a_camp_cam_enddate1">9/07/2017</string>
+    <string name="create_a_camp_cam_starttime">Start Time</string>
+    <string name="create_a_camp_cam_endtime">End Time</string>
+    <string name="create_a_camp_cam_starttime1">10 Am</string>
+    <string name="create_a_camp_cam_endtime1">9 Pm</string>
+    <string name="create_a_camp_cam_logo">Camp Logo</string>
+    <string name="create_a_camp_cam_browser">Browse</string>
+    <string name="create_a_camp_cam_venu">Venue</string>
+    <string name="create_a_camp_cam_venu_here">Venue Here</string>
+    <string name="create_a_camp_cam_continue">Add Camp</string>
+    <string name="create_a_camp_cam_pythologist">Pathologist Name</string>
+    <string name="create_a_camp_cam_pythologist_name_here">Pathologist Name Here</string>
+    <string name="create_a_camp_cam_degree">Degree</string>
+    <string name="create_a_camp_cam_degree_name">Degree Name Here</string>
+
+
+    <!--////////////      Patient Detail fragment            |||||||||||||||||||-->
+
+    <string name="camp_name">Camp Name -</string>
+    <string name="camp_name_here">Camp name here</string>
+    <string name="patient_detail_patient_id">Name:</string>
+    <string name="patient_detail_registraction_date">Registration Date</string>
+    <string name="patient_detail_patient_no">Name Here</string>
+    <string name="patient_detail_patient_date">04/07/2017</string>
+    <string name="patient_detail_patient_mobile">M.no:</string>
+    <string name="patient_detail_patient_mobile_no">+910000000000 </string>
+    <string name="patient_detail_patient_age">DOB</string>
+    <string name="patient_detail_patient_gender">Sex</string>
+    <string name="patient_detail_patient_age1">01/07/2017</string>
+    <string name="patient_detail_patient_male">Male</string>
+    <string name="patient_detail_patient_id_proof">Id Proof</string>
+    <string name="patient_detail_patient_id_proofno">ARHIOJNF522</string>
+    <string name="patient_detail_patient_email">Email </string>
+    <string name="patient_detail_patient_emailid">abc@gmail.com</string>
+    <string name="patient_detail_patient_died">Diet</string>
+    <string name="patient_detail_patient_diedname">Lorem ipsum dolor</string>
+    <string name="patient_detail_patient_lebelid">Label  </string>
+    <string name="patient_detail_patient_lebelidno">12456241565</string>
+    <string name="patient_detail_patient_save">Save</string>
+    <string name="patient_detail_global_search">Global Search</string>
+    <string name="patient_detail_id">ID</string>
+
+    <string name="patient_detail_age">Age</string>
+    <string name="patient_detail_age1">24</string>
+    <string name="patient_detail_Id_no">Id Number </string>
+    <string name="patient_detail_id_no">ASRHFHJ6788</string>
+    <string name="patient_detail_acute_disease">Acute Disease</string>
+    <string name="patient_detail_chronic_disease">Acute/Cronic</string>
+    <string name="patient_detail_product_detail">Products Name</string>
+    <string name="patient_detail_product_detail1">enter the product detail</string>
+    <string name="patient_detail_image_list">Listshow</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="patent_detail_medical_history">M.History</string>
+    <string name="patent_detail_medical_id">P.Id:</string>
+    <string name="patent_detail_medical_Rapid">Rapid Test</string>
+    <string name="patent_detail_medical_patied_">Patient Id Here</string>
+    <string name="patent_detail_package">Package</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="patient_mobile">Mobile</string>
+    <string name="patient_address">Address</string>
+    <string name="select_test">Select Test</string>
+    <string name="add_button">Add</string>
+    <string name="search">Search</string>
+
+
+    <!--////////////     Help info fragment            |||||||||||||||||||-->
+    <string name="help_info_camp">How to create camp </string>
+    <string name="help_info_camp_all">
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor</string>
+
+    <string name="help_info_patient">How to add patient </string>
+
+    <string name="help_info_patient_all">
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor
+         Lorem ipsum dolor Lorem ipsum dolor</string>
+
+    <!--////////// Camp Preview fragment \\\\\\\\\\\\-->
+    <string name="camp_preview_title">Camp Details</string>
+
+
+    <!--////////////     About Us fragment            |||||||||||||||||||-->
+
+    <string name="about_us_name">Accuster Technologies </string>
+
+    <string name="about_us_name_all">Accuster Technologies is a research-based manufacturing organization which is working round the clock to provide revolutionized solutions in the field of In-Vitro Diagnostics (IVD).\n\n
+    We design, manufacture and offer competitive innovative healthcare driven products to people. We are working with different skill sets of R&amp;D, QC, Production, Product designing, IT, Marketing, Sales, CRM but all are working together to fulfill the same vision.\n\n
+        Accuster Technologies was started in the year 2009 with a small set up in a single room with few dedicated person’s team and matured into a manufacturing plant set up with around 50 people by the year 2011. Today we are spreading our wings not only in India but worldwide also.
+        Many people of other countries like Nepal, Srilanka, Tanzania, US, Kenya, Nigeria, Uganda, UK etc. are getting benefits of our innovative technologies.\n\n
+     We are working hard to solve the basic healthcare problem of society not only in India but in the world also. We know this mission is a mammoth task but we will not stop until we achieve it. We want to be the largest organization known for bringing medical solutions to the end user by solving grassroots problems
+    </string>
+
+    <string name="about_us_version">Ver 2.0 </string>
+
+    <!--////////////     Edit Profile Fragment            |||||||||||||||||||-->
+    <string name="save">Save</string>
+    <string name="name">Name</string>
+
+
+    <!--////////////     Register Activity            |||||||||||||||||||-->
+
+    <string name="about_register_change_photo">Change Photo </string>
+    <string name="about_register_email">Email </string>
+    <string name="about_register_name">Name </string>
+    <string name="about_register_password">Password </string>
+    <string name="about_register_confirmedpass">Confirm Password </string>
+    <string name="about_register_contact">Contact</string>
+    <string name="about_register_sign_Up">Sign Up</string>
+    <string name="about_register_alreadyaccount">Already have an account ?</string>
+
+
+    <!--////////////     Forgot Password Activity            |||||||||||||||||||-->
+
+    <string name="forgot_password_resendpassword">RESEND YOUR PASSWORD</string>
+    <string name="forgot_password_msg">
+        It is often forgotten that password
+        thing.Enter your email address
+        below and click on the get password  </string>
+
+    <string name="forgot_password_email">Email</string>
+    <string name="forgot_password_get_password">Get Password</string>
+
+
+    <!--////////////    HomeNavigation Activity            |||||||||||||||||||-->
+
+    <string name="home_screen_name">Mathew Martein</string>
+    <string name="home_screen_email">mathew@gmail.com</string>
+    <string name="server_error">Some error occur try again later</string>
+    <string name="Rs">\u20B9</string>
+
+
+</resources>

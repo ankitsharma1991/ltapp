@@ -1,0 +1,464 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homebg1080"
+    android:orientation="vertical"
+    tools:context=".fragment.AboutUs">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:isScrollContainer="false"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/height4"
+            android:layout_height="wrap_content">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginTop="@dimen/margin6"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/logo"
+                    android:layout_marginTop="12dp"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing" />
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/height4"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:cursorVisible="false"
+                    android:layout_marginLeft="@dimen/height4"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_organisantiom_name"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/orgname"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_camp_name"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/campname"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_camp_description"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/address"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_cam_startindate"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/startdate"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_cam_enddate"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/enddate"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_cam_starttime"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/starttime"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_cam_endtime"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/endtime"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_cam_venu"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/camp_description"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/patient_detail_product_detail"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/product_details"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_cam_pythologist"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/pathname"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/height7"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/height7"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:inputType="textMultiLine"
+                    android:layout_width="wrap_content"
+                    android:cursorVisible="false"
+                    android:text="@string/create_a_camp_cam_degree"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+                <custom.AvenirRomanTextView
+                    android:id="@+id/degree"
+                    android:inputType="textMultiLine"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:text="@string/camp_preview_title"
+                    android:textSize="@dimen/textsize"
+                    android:imeOptions="flagNoExtractUi"
+                    android:gravity="center"
+                    android:textColor="@color/textcolor"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,457 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homebg1080"
+    android:orientation="vertical"
+    tools:context=".fragment.CreateCampFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
+        android:isScrollContainer="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="@dimen/height4"
+            android:orientation="vertical">
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:imeOptions="flagNoExtractUi"
+                android:text="@string/create_a_camp_organisantiom_name"
+                android:textColor="@color/textcolor1"
+                android:textSize="@dimen/textsize" />
+
+            <custom.AvenirRomanEditText
+                android:id="@+id/sp_create_organisation_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:hint="Organization Name Here"
+                android:inputType="textCapSentences|textAutoCorrect"
+                android:maxLines="1"
+                android:enabled="false"
+                android:paddingBottom="10dp"
+                android:paddingRight="5dp"
+                android:paddingTop="6dp"
+                android:singleLine="true"
+                android:textColor="@color/textcolor1"
+                android:textColorHint="@color/hintscolor"
+                android:textSize="@dimen/textsize" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/height1"
+                android:background="@color/textcolor" />
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/height4"
+                android:imeOptions="flagNoExtractUi"
+                android:text="@string/create_a_camp_camp_name"
+                android:textColor="@color/textcolor1"
+                android:textSize="@dimen/textsize" />
+
+            <custom.AvenirRomanEditText
+                android:id="@+id/et_camp_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:hint="@string/create_a_camp_camp_name_here"
+                android:inputType="textCapSentences|textAutoCorrect"
+                android:maxLines="1"
+                android:paddingBottom="10dp"
+                android:paddingRight="5dp"
+                android:paddingTop="6dp"
+                android:singleLine="true"
+                android:textColor="@color/textcolor1"
+                android:textColorHint="@color/hintscolor"
+                android:textSize="@dimen/textsize" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/height1"
+                android:background="@color/textcolor" />
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/height4"
+                android:imeOptions="flagNoExtractUi"
+                android:text="@string/create_a_camp_camp_description"
+                android:textColor="@color/textcolor1"
+                android:textSize="@dimen/textsize" />
+
+
+            <custom.AvenirRomanEditText
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:hint="@string/create_a_camp_camp_description_here"
+                android:inputType="textCapSentences|textAutoCorrect"
+                android:maxLines="1"
+                android:paddingBottom="10dp"
+                android:paddingRight="5dp"
+                android:paddingTop="6dp"
+                android:singleLine="true"
+                android:textColor="@color/textcolor1"
+                android:textColorHint="@color/hintscolor"
+                android:textSize="@dimen/textsize" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/height1"
+                android:background="@color/textcolor" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/height4"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:orientation="vertical">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="flagNoExtractUi"
+                        android:text="@string/create_a_camp_cam_startindate"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight=".5"
+                    android:orientation="vertical">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imeOptions="flagNoExtractUi"
+                        android:text="@string/create_a_camp_cam_enddate"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/height3"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:orientation="vertical">
+
+                    <custom.AvenirRomanTextView
+                        android:id="@+id/et_startdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:hint="@string/create_a_camp_cam_startdate1"
+                        android:inputType="textCapSentences|textAutoCorrect"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:paddingTop="3dp"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolor1"
+                        android:textColorHint="@color/hintscolor"
+                        android:textSize="@dimen/textsize" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="@dimen/height3"
+                        android:background="@color/textcolor" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight=".5"
+                    android:orientation="vertical">
+
+                    <custom.AvenirRomanTextView
+                        android:id="@+id/et_enddate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:background="#00000000"
+                        android:hint="@string/create_a_camp_cam_enddate1"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="textCapSentences|textAutoCorrect"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:paddingTop="3dp"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolor1"
+                        android:textColorHint="@color/hintscolor"
+                        android:textSize="@dimen/textsize" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginTop="@dimen/height3"
+                        android:background="@color/textcolor" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/height4"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:orientation="vertical">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="flagNoExtractUi"
+                        android:text="@string/create_a_camp_cam_starttime"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight=".5"
+                    android:orientation="vertical">
+
+                    <custom.AvenirRomanTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:imeOptions="flagNoExtractUi"
+                        android:text="@string/create_a_camp_cam_endtime"
+                        android:textColor="@color/textcolor1"
+                        android:textSize="@dimen/textsize" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/height3"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:orientation="vertical">
+
+                    <custom.AvenirRomanTextView
+
+                        android:id="@+id/et_starttime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:hint="@string/create_a_camp_cam_starttime1"
+                        android:inputType="textCapSentences|textAutoCorrect"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:paddingTop="3dp"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolor1"
+                        android:textColorHint="@color/hintscolor"
+                        android:textSize="@dimen/textsize" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginTop="@dimen/height3"
+                        android:background="@color/textcolor" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight=".5"
+                    android:orientation="vertical">
+
+                    <custom.AvenirRomanTextView
+                        android:id="@+id/et_endtime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:background="#00000000"
+                        android:hint="@string/create_a_camp_cam_endtime1"
+                        android:imeOptions="flagNoExtractUi"
+                        android:inputType="textCapSentences|textAutoCorrect"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:paddingTop="3dp"
+                        android:singleLine="true"
+                        android:textColor="@color/textcolor1"
+                        android:textColorHint="@color/hintscolor"
+                        android:textSize="@dimen/textsize" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="@dimen/height4"
+                        android:layout_marginTop="@dimen/height3"
+                        android:background="@color/textcolor" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:imeOptions="flagNoExtractUi"
+                android:text="Description"
+                android:textColor="@color/textcolor1"
+                android:textSize="@dimen/textsize" />
+
+            <custom.AvenirRomanEditText
+                android:id="@+id/et_venuename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:hint="Description"
+                android:inputType="textCapSentences|textAutoCorrect"
+                android:maxLines="1"
+                android:paddingBottom="10dp"
+                android:paddingRight="5dp"
+                android:paddingTop="6dp"
+                android:singleLine="true"
+                android:textColor="@color/textcolor"
+                android:textColorHint="@color/hintscolor"
+                android:textSize="@dimen/textsize" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/height1"
+                android:background="@color/textcolor" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginTop="@dimen/margin3"
+                android:orientation="vertical">
+
+                <custom.AvenirRomanTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="flagNoExtractUi"
+                    android:text="@string/create_a_camp_cam_pythologist"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="@dimen/textsize" />
+
+
+                <custom.CustomLablledSpinner
+                    android:id="@+id/sp_product_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/create_a_camp_organisantiom_name_here"
+                    android:inputType="textCapSentences|textAutoCorrect"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="6dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textcolor1"
+                    android:textColorHint="@color/hintscolor"
+                    android:textSize="@dimen/textsize" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lv_add_camp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/height3"
+                android:layout_marginLeft="@dimen/height11"
+                android:layout_marginRight="@dimen/height11"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/loginbutton"
+                android:gravity="center">
+
+
+                <custom.AvenirRomanButton
+                    android:id="@+id/bt_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="#00000000"
+                    android:gravity="center"
+                    android:text="@string/create_a_camp_cam_continue"
+                    android:textAllCaps="false"
+                    android:textColor="@color/textwhite"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

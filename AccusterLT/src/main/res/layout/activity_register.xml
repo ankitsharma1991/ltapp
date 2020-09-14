@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/homebg1080">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:isScrollContainer="false"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginTop="@dimen/margin5"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_height="wrap_content">
+
+
+
+                <com.base.utility.CircleImageView
+                    android:id="@+id/img_profile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/profilrpic"
+                    android:layout_marginTop="12dp"
+                    android:paddingTop="@dimen/nav_header_vertical_spacing" />
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/height2"
+            android:layout_marginLeft="@dimen/height4"
+            android:layout_marginRight="@dimen/height4"
+            android:layout_height="wrap_content">
+
+                  <custom.AvenirRomanTextView
+                    android:layout_width="match_parent"
+                    android:text="@string/about_register_change_photo"
+                    android:textSize="@dimen/textsize"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:imeOptions="flagNoExtractUi"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/register"
+                android:layout_marginTop="@dimen/height5"
+                android:layout_marginLeft="@dimen/height8"
+                android:layout_marginRight="@dimen/height8"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".15"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/height3"
+                        android:background="@drawable/email30"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".005"
+                    android:layout_marginLeft="@dimen/height2"
+                    android:layout_marginTop="@dimen/height4"
+                    android:layout_marginBottom="@dimen/height4"
+                    android:background="@color/hintscolor"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".84"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <custom.AvenirRomanEditText
+
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/about_register_name"
+                        android:id="@+id/et_name"
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/margin2"
+                        android:textColorHint="@color/hintcolorhide"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/register"
+                android:layout_marginTop="@dimen/height5"
+                android:layout_marginLeft="@dimen/height8"
+                android:layout_marginRight="@dimen/height8"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".15"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/height3"
+                        android:background="@drawable/email30"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".005"
+                    android:layout_marginLeft="@dimen/height2"
+                    android:layout_marginTop="@dimen/height4"
+                    android:layout_marginBottom="@dimen/height4"
+                    android:background="@color/hintscolor"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".84"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <custom.AvenirRomanEditText
+
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType=
+                            "textCapSentences|textAutoCorrect"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/about_register_email"
+                        android:id="@+id/et_email"
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/margin2"
+                        android:textColorHint="@color/hintcolorhide"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/register"
+                android:layout_marginTop="@dimen/height5"
+                android:layout_marginLeft="@dimen/height8"
+                android:layout_marginRight="@dimen/height8"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".15"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/height3"
+                        android:background="@drawable/password"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".005"
+                    android:layout_marginLeft="@dimen/height2"
+                    android:layout_marginTop="@dimen/height4"
+                    android:layout_marginBottom="@dimen/height4"
+                    android:background="@color/hintscolor"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".84"
+
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <custom.AvenirRomanEditText
+
+                        android:singleLine="true"
+                        android:id="@+id/et_password"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/about_register_password"
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/margin2"
+                        android:textColorHint="@color/hintcolorhide"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/register"
+                android:layout_marginTop="@dimen/height5"
+                android:layout_marginLeft="@dimen/height8"
+                android:layout_marginRight="@dimen/height8"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".15"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/height3"
+                        android:background="@drawable/password"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".005"
+                    android:layout_marginLeft="@dimen/height2"
+                    android:layout_marginTop="@dimen/height4"
+                    android:layout_marginBottom="@dimen/height4"
+                    android:background="@color/hintscolor"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".84"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <custom.AvenirRomanEditText
+
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/about_register_confirmedpass"
+                        android:id="@+id/et_cpassword"
+
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/margin2"
+                        android:textColorHint="@color/hintcolorhide"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/register"
+                android:layout_marginTop="@dimen/height5"
+                android:layout_marginLeft="@dimen/height8"
+                android:layout_marginRight="@dimen/height8"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".15"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/height3"
+                        android:background="@drawable/email30"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".005"
+                    android:layout_marginLeft="@dimen/height2"
+                    android:layout_marginTop="@dimen/height4"
+                    android:layout_marginBottom="@dimen/height4"
+                    android:background="@color/hintscolor"
+                    android:layout_height="match_parent">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".84"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content">
+                    <custom.AvenirRomanEditText
+
+                        android:singleLine="true"
+                        android:id="@+id/et_contact"
+                        android:maxLines="1"
+                        android:paddingRight="5dp"
+                        android:maxLength="10"
+                        android:inputType="number"
+                        android:layout_width="match_parent"
+                        android:background="#00000000"
+                        android:hint="@string/about_register_contact"
+                        android:paddingTop="3dp"
+                        android:textSize="@dimen/textsize"
+                        android:layout_marginLeft="@dimen/margin2"
+                        android:textColorHint="@color/hintcolorhide"
+                        android:textColor="@color/textcolor1"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:background="@drawable/browser"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/height8"
+                android:layout_marginRight="@dimen/height8"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin4"
+                android:layout_height="40dp">
+
+                <custom.AvenirRomanButton
+                    android:layout_width="match_parent"
+                    android:text="@string/about_register_sign_Up"
+                    android:textSize="@dimen/textsize"
+                    android:textColor="@color/textwhite"
+                    android:id="@+id/signUp"
+                    android:background="#00000000"
+                    android:textAllCaps="false"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/height4"
+                android:layout_marginLeft="@dimen/height4"
+                android:layout_marginRight="@dimen/height4"
+                android:layout_height="wrap_content">
+
+                <custom.AvenirRomanTextView
+                    android:layout_width="match_parent"
+                    android:text="@string/about_register_alreadyaccount"
+                    android:textSize="@dimen/textsize"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:id="@+id/tv_login"
+                    android:imeOptions="flagNoExtractUi"
+                    android:textColor="@color/textcolor1"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+       </ScrollView>
+    </LinearLayout>

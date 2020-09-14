@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home1"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_register_patient"
+            android:icon="@drawable/patient"
+            android:title="@string/nav_register_patient" />
+        <item
+            android:icon="@drawable/qcdata"
+            android:id="@+id/qcdata"
+            android:title="QC Data"/>
+
+        <item
+            android:id="@+id/nav_create_camp"
+            android:icon="@drawable/createcamp"
+            android:title="@string/nav_create_camp" />
+        <item
+            android:id="@+id/nav_camp_list"
+            android:icon="@drawable/camplist"
+            android:title="@string/nav_camp_list" />
+
+        <item
+            android:id="@+id/nav_package_list"
+            android:icon="@drawable/home"
+            android:title="@string/nav_package_list" />
+
+        <item
+            android:id="@+id/nav_syn"
+            android:icon="@drawable/logout"
+            android:title="@string/nav_syn" />
+        <item
+            android:id="@+id/nav_user"
+            android:icon="@drawable/patient"
+            android:title="E-Appointments" />
+
+        <item
+            android:id="@+id/nav_about_us"
+            android:icon="@drawable/info"
+            android:title="@string/nav_about_us" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/help"
+            android:title="@string/nav_help" />
+        <item android:id="@+id/Reportsetting"
+            android:icon="@drawable/report"
+            android:title="Report Setting"/>
+        <item android:id="@+id/Report"
+            android:icon="@drawable/reporticon"
+            android:title="Report"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="@string/nav_logout" />
+    </group>
+</menu>

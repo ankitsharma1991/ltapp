@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash720"
+    >
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@color/colorPrimaryDark" />
+<!--    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="#f2f2f2"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="0.1"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_height="0dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:text="Enter Your OTP"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:text="This is Photoshop's version of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textSize="14dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <com.goodiebag.pinview.Pinview
+            android:id="@+id/pinview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            app:cursorVisible="true"
+            app:forceKeyboard="true"
+            app:hint="0"
+            app:inputType="number"
+            app:password="false"
+            app:pinBackground="@drawable/pin_background"
+            app:pinHeight="50dp"
+            app:pinLength="5"
+            app:pinWidth="50dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight=".25">
+            <ImageView
+                android:layout_width="120dp"
+                android:id="@+id/iv_verify"
+
+                android:layout_gravity="center_horizontal"
+                android:layout_height="120dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Didn’t Recieve the OTP?"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Resend Code ?"
+                android:id="@+id/tv_resend"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content" />
+        </LinearLayout>-->
+    <!--</LinearLayout>-->
+
+
+</RelativeLayout>

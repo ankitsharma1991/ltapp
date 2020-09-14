@@ -1,0 +1,70 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homebg1080"
+    android:orientation="vertical"
+    tools:context=".fragment.AboutUs">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:background="@drawable/logo"
+                android:paddingTop="@dimen/nav_header_vertical_spacing" />
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/height4"
+                android:cursorVisible="false"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textMultiLine"
+                android:text="@string/about_us_name"
+                android:textColor="@color/colorblack"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/height4"
+                android:cursorVisible="false"
+                android:gravity="center"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textMultiLine"
+                android:text="@string/about_us_name_all"
+                android:textColor="@color/textcolor"
+                android:textSize="@dimen/textsize" />
+
+        </LinearLayout>
+
+        <custom.AvenirRomanTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:cursorVisible="false"
+            android:gravity="center"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textMultiLine"
+            android:text="@string/about_us_version"
+            android:textColor="@color/colorblack"
+            android:textSize="@dimen/textsizelarge" />
+    </RelativeLayout>
+</ScrollView>

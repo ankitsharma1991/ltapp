@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homebg1080"
+    android:orientation="vertical">
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:textColor="#dfe5ea"
+       android:text="Report setting"
+       android:paddingRight="20dp"
+       android:textStyle="bold"
+
+       android:gravity="center_vertical|center_horizontal"
+       android:textSize="20dp"
+
+       android:background="@color/colorPrimaryDark"
+       android:layout_weight="0.06"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+
+        android:orientation="horizontal"
+        >
+        <custom.AvenirRomanTextView
+
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:gravity="center"
+
+
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_weight="0.3"
+
+
+            android:text="Logo"
+            />
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/logoi"
+
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".2"
+        android:orientation="horizontal">
+
+        >
+        <custom.AvenirRomanTextView
+
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:gravity="center"
+
+
+            android:layout_gravity="center_vertical|center_horizontal"
+
+            android:layout_weight="0.3"
+
+            android:text="Address"/>
+        >
+        <custom.AvenirRomanEditText
+
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:hint="Address"
+            android:layout_weight="0.5"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:id="@+id/address"/>
+
+    </LinearLayout>
+    <custom.AvenirRomanButton
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:id="@+id/save"
+        android:text="Save"
+        android:onClick="save"
+        android:textColor="#ebede8"
+
+        android:background="@drawable/loginbutton"
+        android:layout_gravity="center"
+    android:layout_weight="0.06"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        ></LinearLayout>
+
+</LinearLayout>

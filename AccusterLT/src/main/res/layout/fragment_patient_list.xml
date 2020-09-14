@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:weightSum="1">
+
+        <custom.AvenirRomanTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".05"
+            android:gravity="center"
+            android:id="@+id/lid"
+            android:text="Lid"
+            android:textColor="@color/textwhite" />
+
+        <custom.AvenirRomanTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:gravity="center"
+            android:text="Id"
+            android:textColor="@color/textwhite" />
+
+        <custom.AvenirRomanTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".15"
+            android:gravity="center"
+            android:text="P Name"
+            android:textColor="@color/textwhite" />
+
+        <custom.AvenirRomanTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".15"
+            android:gravity="center"
+            android:text="Sex"
+            android:textColor="@color/textwhite" />
+
+        <custom.AvenirRomanTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".15"
+            android:gravity="center"
+            android:text="T Code"
+            android:textColor="@color/textwhite" />
+
+        <custom.AvenirRomanTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".15"
+            android:gravity="center"
+            android:text="Cost"
+            android:textColor="@color/textwhite" />
+
+        <custom.AvenirRomanTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".15"
+            android:gravity="center"
+            android:text="Status"
+            android:textColor="@color/textwhite" />
+
+        <custom.AvenirRomanTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:gravity="center"
+            android:text="View"
+            android:textColor="@color/textwhite" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_patient_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lv_spinnerParent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/mlabel"
+        android:textSize="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/brown"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:visibility="gone"
+        android:layout_marginRight="10dp"
+        android:text="Hint"/>
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinner_view"
+        android:layout_width="match_parent"
+        android:layout_marginRight="5dp"
+        android:layout_height="20dp"
+        />
+    <View
+        android:id="@+id/line_view"
+        android:gravity="start|center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/hintscolor"/>
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/tv_error"
+        android:textSize="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone" />
+</LinearLayout>

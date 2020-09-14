@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:gravity="center"
+        android:background="#cfd8dc"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:layout_gravity="left"
+            android:layout_height="wrap_content">
+
+            <custom.AvenirRomanTextView
+                android:layout_width="match_parent"
+                android:text="@string/patient_detail_patient_id"
+                android:textSize="@dimen/textsize"
+                android:gravity="left"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="40dp"
+                android:id="@+id/expandedListItem"
+                android:imeOptions="flagNoExtractUi"
+                android:textColor="@color/red"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

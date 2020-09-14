@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="#cfd8dc"
+    android:id="@+id/mainlayout"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <custom.AvenirRomanTextView
+            android:id="@+id/testName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:text="Name:- LDL"
+            android:textColor="@color/brown"
+            android:textSize="14dp" />
+
+        <custom.AvenirRomanTextView
+            android:id="@+id/testCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".4"
+            android:text="Code:- LD"
+            android:textColor="@color/brown"
+            android:textSize="14dp" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <custom.AvenirRomanTextView
+            android:id="@+id/testAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".6"
+            android:text="Amount: 80"
+            android:textColor="@color/brown"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:id="@+id/lv_result_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".4"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        <custom.AvenirRomanTextView
+            android:id="@+id/testResult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:text="Result: ----"
+            android:inputType="numberDecimal"
+            android:textColor="@color/brown"
+            android:textSize="14dp" />
+
+            <ImageView
+                android:id="@+id/imvEdit"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_mode_edit_black_24dp" />
+            <ImageView
+                android:id="@+id/pri"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight=".07"
+
+
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/icon_preview" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lv_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".4"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+            <custom.AvenirRomanEditText
+                android:id="@+id/enterResult"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:hint="Result"
+                android:textColor="@color/brown"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:id="@+id/imvDone"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_done_black_24dp" />
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

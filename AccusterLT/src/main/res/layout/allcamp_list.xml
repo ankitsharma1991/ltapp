@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginRight="@dimen/height4"
+        android:layout_marginLeft="@dimen/height4"
+        android:layout_marginTop="@dimen/margin3"
+        android:layout_height="wrap_content">
+
+
+
+        <LinearLayout
+            android:layout_width="35dp"
+
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="wrap_content"
+                android:text="1000"
+                android:id="@+id/tv_tId"
+                android:textColor="@color/textcolor1"
+                android:textSize="@dimen/textsize"
+                android:imeOptions="flagNoExtractUi"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:gravity="left"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <custom.AvenirRomanTextView
+                android:id="@+id/tv_testName"
+                android:layout_width="wrap_content"
+                android:text="Nameeeeeeeeeee"
+                android:textColor="@color/textcolor1"
+                android:textSize="@dimen/textsize"
+                android:imeOptions="flagNoExtractUi"
+                android:gravity="left"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+      <!--  <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_weight=".15"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="wrap_content"
+                android:text="Age"
+                android:id="@+id/tv_pAge"
+                android:textColor="@color/textcolor1"
+                android:textSize="@dimen/textsize"
+                android:imeOptions="flagNoExtractUi"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight=".15"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="wrap_content"
+                android:text="DOB"
+                android:id="@+id/tv_pDob"
+                android:textColor="@color/textcolor1"
+                android:textSize="@dimen/textsize"
+                android:imeOptions="flagNoExtractUi"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight=".15"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <custom.AvenirRomanTextView
+                android:layout_width="wrap_content"
+                android:text="Gender"
+                android:textColor="@color/textcolor1"
+                android:id="@+id/tv_pGender"
+                android:textSize="@dimen/textsize"
+                android:imeOptions="flagNoExtractUi"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight=".10"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/img_pa_preview"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_preview"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight=".15"
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/img_pa_process"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/check_mark_yes" />
+
+
+        </LinearLayout>
+-->
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

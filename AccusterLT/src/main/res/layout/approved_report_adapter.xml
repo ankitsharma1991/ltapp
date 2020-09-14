@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/tv_pa_labelNo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".16"
+        android:imeOptions="flagNoExtractUi"
+        android:text="Serial No"
+        android:textColor="@color/textcolor1"
+        android:textSize="14sp" />
+
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/tv_campname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".25"
+        android:gravity="center"
+        android:imeOptions="flagNoExtractUi"
+        android:maxLength="15"
+        android:text="Camp Name"
+        android:textColor="@color/textcolor1"
+        android:textSize="14sp" />
+
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/age"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".1"
+        android:gravity="center"
+        android:imeOptions="flagNoExtractUi"
+
+        android:textColor="@color/textcolor1"
+        android:textSize="14sp" />
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:gravity="center"
+        android:imeOptions="flagNoExtractUi"
+        android:text="Total Patient"
+        android:textColor="@color/textcolor1"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/iv_info"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="0.14"
+        android:layout_gravity="center"
+        android:src="@drawable/info1" />
+
+    <ImageView
+        android:id="@+id/iv_status"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="0.14"
+        android:layout_gravity="center"
+        android:src="@drawable/icon_preview" />
+
+</LinearLayout>

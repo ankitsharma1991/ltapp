@@ -1,0 +1,99 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homebg1080"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    tools:context=".fragment.CreateCampFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/height4"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <custom.AvenirRomanTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="flagNoExtractUi"
+                    android:text="@string/package_name"
+                    android:textColor="@color/textcolor1"
+                    android:textSize="@dimen/textsize" />
+
+                <custom.AvenirRomanEditText
+                    android:id="@+id/package_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:hint="@string/package_name_here"
+                    android:inputType="textCapSentences|textAutoCorrect"
+                    android:maxLines="1"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="6dp"
+                    android:singleLine="true"
+                    android:textColor="@color/textcolor1"
+                    android:textColorHint="@color/hintscolor"
+                    android:textSize="@dimen/textsize" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/height1"
+                    android:background="@color/textcolor" />
+
+
+            </LinearLayout>
+
+
+            <ExpandableListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="100dp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/height3"
+            android:layout_marginLeft="@dimen/height11"
+            android:layout_marginRight="@dimen/height11"
+            android:background="@drawable/loginbutton"
+            android:gravity="center">
+
+
+            <custom.AvenirRomanButton
+                android:id="@+id/bt_save"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="#00000000"
+                android:gravity="center"
+                android:text="@string/add_package_continue"
+                android:textAllCaps="false"
+                android:textColor="@color/textwhite"
+                android:textSize="@dimen/textsize" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>

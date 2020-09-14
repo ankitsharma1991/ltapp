@@ -1,0 +1,9 @@
+*.iml
+/local.properties
+/build
+/.idea/
+.gradle
+/gradle.properties
+app/src/main/res/drawable-hdpi/
+/gradlew
+/gradle/

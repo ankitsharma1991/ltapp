@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--<item-->
+    <!--android:id="@+id/bluetooth_connect"-->
+    <!--android:title="bluetooth"-->
+    <!--android:icon="@drawable/bluetooth_connet"-->
+    <!--app:showAsAction="always"/>-->
+
+    <item
+        android:id="@+id/bluetooth_disconnect"
+        android:icon="@drawable/bluetooth_disconnect"
+        android:title="bluetooth"
+        app:showAsAction="always" />
+</menu>

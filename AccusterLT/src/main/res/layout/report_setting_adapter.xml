@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/tv_pId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".05"
+        android:imeOptions="flagNoExtractUi"
+        android:text="Serial No"
+        android:textColor="@color/textcolor1"
+        android:textSize="14sp" />
+
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/camp_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".3"
+        android:gravity="center"
+        android:imeOptions="flagNoExtractUi"
+        android:maxLength="15"
+        android:text="Camp Name"
+        android:textColor="@color/textcolor1"
+        android:textSize="14sp" />
+
+
+    <Switch
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:gravity="center"
+        android:imeOptions="flagNoExtractUi"
+
+        android:textColor="@color/textcolor1"
+        android:textSize="14sp" />
+
+    <Switch
+        android:id="@+id/footer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".2"
+        android:gravity="center"
+        android:imeOptions="flagNoExtractUi"
+
+        android:textColor="@color/textcolor1"
+        android:textSize="14sp" />
+
+
+    <Button
+        android:id="@+id/logo"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:text="Edit"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>

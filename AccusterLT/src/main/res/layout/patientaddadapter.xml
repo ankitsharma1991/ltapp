@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lv_parent"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:weightSum="1">
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/pId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".1"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="-"
+        android:textColor="@color/brown" />
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/p_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".15"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="-"
+        android:textColor="@color/brown" />
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/pSex"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".15"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="-"
+        android:textColor="@color/brown" />
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/mobileNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".15"
+        android:maxLines="1"
+        android:gravity="center"
+        android:maxLength="8"
+        android:ellipsize="end"
+        android:text="-"
+        android:textColor="@color/brown" />
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/p_totalcost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".15"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:text="-"
+        android:textColor="@color/brown" />
+
+    <custom.AvenirRomanTextView
+        android:id="@+id/status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".15"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:text="-"
+        android:textColor="@color/brown" />
+
+    <CheckBox
+        android:id="@+id/img_pa_preview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight=".1"
+        android:textColor="@color/brown"
+         />
+
+</LinearLayout>
