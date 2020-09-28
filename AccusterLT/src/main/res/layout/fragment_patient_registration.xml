@@ -659,7 +659,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".05"
                 android:gravity="center"
-                android:text="s.no"
+                android:text="S.No"
                 android:textColor="@color/textwhite" />
 
             <custom.AvenirRomanTextView

@@ -42,6 +42,7 @@ public class Controller {
             responseCall = new ServiceSelector().selectMethod(this, baseNetworkRequest);
             if (responseCall != null) {
                 if (baseNetworkRequest.isShowProgressBar) {
+                    //ProgressBar.showDialog(baseNetworkRequest.context, "Please Wait...", false);
                     ProgressBar.showDialog(baseNetworkRequest.context, "Please Wait...", false);
                 }
                 responseCall.enqueue(mNetworkResponse);

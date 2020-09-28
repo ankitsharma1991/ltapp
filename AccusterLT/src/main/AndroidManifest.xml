@@ -40,9 +40,7 @@
         </provider>
 
         <activity android:name=".activity.Splash"
-
-
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -86,5 +84,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBv81PyBVu9z3uhDpD4VseiKG10j8gL2-8"/>
+
+        <activity android:name=".activity.NewImageEditerActivity">
+
+        </activity>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
     </application>
 </manifest>

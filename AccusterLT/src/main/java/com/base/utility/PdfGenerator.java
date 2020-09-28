@@ -197,14 +197,18 @@ public class PdfGenerator extends  PdfPageEventHelper {
                         document.add(addHeader(docWriter));
                     } else {
                         // document.setMarginMirroringTopBottom(true);
+                          // BELOW LINE COMMENTED BY JS
                         document.top(500.0f);
                         //  Toast.makeText(,"happen",Toast.LENGTH_LONG).show();
 
                         //  Log.e("add para ", "ho");
+                           // BELOW LINE COMMENTED BY JS
                         addEmptyLine(document, new Paragraph(), 5);
 
                     }
             } else {
+
+
                 if (Heleprec.logo == null)
                     bmp2 = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.acclogo);
                 else
@@ -220,9 +224,12 @@ public class PdfGenerator extends  PdfPageEventHelper {
                     image2.scaleAbsolute(100, 100);
                     document.add(addHeader(docWriter));
 
+
                 }
                 Log.e("s2", Heleprec.update + "");
             }
+            // BY JS
+            if (campdetails.isHeader())
             addHorizontal_line(document);
 
             LineSeparator separator1 = new LineSeparator();
@@ -324,7 +331,17 @@ public class PdfGenerator extends  PdfPageEventHelper {
                                     document.add(addHeader(docWriter));
                                     addHorizontal_line(document);
                                 }
+                                    // ELSE part added BY JS
+                                else {
+                                    // document.setMarginMirroringTopBottom(true);
+                                    // BELOW LINE COMMENTED BY JS
+                                    document.top(500.0f);
+                                    //  Toast.makeText(,"happen",Toast.LENGTH_LONG).show();
 
+                                    //  Log.e("add para ", "ho");
+                                    // BELOW LINE COMMENTED BY JS
+                                    addEmptyLine(document, new Paragraph(), 5);
+                                }
                             LineSeparator separator11 = new LineSeparator();
                             //  separator.setDash(10);
                             // separator3.setGap(0);
@@ -347,8 +364,11 @@ public class PdfGenerator extends  PdfPageEventHelper {
                             //(current_page != 2)
                             document.add(linebreak111);
                         }
+                        // BY JS COMMENTED added 2 on place of 1
+                        //addEmptyLine(document, new Paragraph(), 1);
+                         addEmptyLine(document, new Paragraph(), 2);
                         addPackageName(packageName, document);
-                        addEmptyLine(document, new Paragraph(), 1);
+
                         if (packageName.contains("SEROLOGY TEST")) {
                             pdfPTable = createTwoColumnTable();
                         } else {
@@ -363,8 +383,9 @@ public class PdfGenerator extends  PdfPageEventHelper {
 
 
                 }
-                document.add(pdfPTable);
                 addEmptyLine(document, new Paragraph(), 1);
+                document.add(pdfPTable);
+
                 document.add(p);
             }
             Paragraph paragraph1 = new Paragraph();
@@ -733,6 +754,8 @@ public void addwidal_table(Document document)
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));
         }
+
+        /// COMMENTED BY JS
         try {
             document.add(paragraph);
         } catch (DocumentException e) {
@@ -846,7 +869,7 @@ public void addwidal_table(Document document)
         // set table width a percentage of the page width
         table.getDefaultCell().setBorder(Rectangle.BOX);
         table.setTotalWidth(1250f);
-        Font f1 = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+        Font f1 = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
         Paragraph para = new Paragraph("PATIENT ID : ", f1);
         PdfPCell c1 = new PdfPCell(para);
         //  c1.addElement(para);
@@ -873,7 +896,7 @@ public void addwidal_table(Document document)
         Cell1.setVerticalAlignment(Element.ALIGN_CENTER);
         Cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
         table.addCell(Cell1);
-        Font f2 = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+        Font f2 = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
         Paragraph para1 = new Paragraph("S. COLLECTION DATE : ", f2);
         PdfPCell c2 = new PdfPCell(para1);
         //  c2.addElement(para);
@@ -904,7 +927,7 @@ public void addwidal_table(Document document)
         Cell2.setVerticalAlignment(Element.ALIGN_CENTER);
         Cell2.setHorizontalAlignment(Element.ALIGN_LEFT);
         table.addCell(Cell2);
-        Font f3 = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+        Font f3 = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
         Paragraph para2 = new Paragraph("NAME : ", f3);
         PdfPCell c3 = new PdfPCell(para2);
         c3.setBorderWidthRight(0f);
@@ -932,7 +955,7 @@ public void addwidal_table(Document document)
         Cell3.setVerticalAlignment(Element.ALIGN_CENTER);
         Cell3.setHorizontalAlignment(Element.ALIGN_LEFT);
         table.addCell(Cell3);
-        Font f4 = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+        Font f4 = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
         Paragraph para3 = new Paragraph("AGE : ", f4);
         // para.setLeading(0, 1);
         //p1.setFont(boldFont);
@@ -961,7 +984,7 @@ public void addwidal_table(Document document)
         Cell4.setVerticalAlignment(Element.ALIGN_CENTER);
         Cell4.setHorizontalAlignment(Element.ALIGN_LEFT);
         table.addCell(Cell4);
-        Font f5 = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+        Font f5 = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
         Paragraph para4 = new Paragraph("SEX : ", f5);
         // para.setLeading(0, 1);
         //p1.setFont(boldFont);
@@ -998,7 +1021,7 @@ public void addwidal_table(Document document)
         Cell5.setVerticalAlignment(Element.ALIGN_CENTER);
         Cell5.setHorizontalAlignment(Element.ALIGN_LEFT);
         table.addCell(Cell5);
-        Font f6 = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+        Font f6 = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
         Paragraph para5 = new Paragraph("ADDRESS : ", f1);
         // para.setLeading(0, 1);
         //p1.setFont(boldFont);
@@ -1027,7 +1050,7 @@ public void addwidal_table(Document document)
         Cell6.setBorderWidthBottom(0f);
         Cell6.setBorderWidthTop(0f);
         table.addCell(Cell6);
-        Font f7 = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+        Font f7 = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
         Paragraph para6 = new Paragraph("DIET : ", f7);
 
         PdfPCell c7 = new PdfPCell(para6);
@@ -1055,7 +1078,7 @@ public void addwidal_table(Document document)
         Cell7.setVerticalAlignment(Element.ALIGN_CENTER);
         Cell7.setHorizontalAlignment(Element.ALIGN_LEFT);
         table.addCell(Cell7);
-        Font f8 = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+        Font f8 = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD);
         Paragraph para7 = new Paragraph("MOBILE : ", f8);
         // para.setLeading(0, 1);
         //p1.setFont(boldFont);
@@ -1633,7 +1656,7 @@ public void addwidal_table(Document document)
         Paragraph p1 = new Paragraph();
         p1.setAlignment(Element.ALIGN_CENTER);
         document.add(p1);
-
+         //commented BY JS
         addEmptyLine(document, new Paragraph(), 2);
     }
 

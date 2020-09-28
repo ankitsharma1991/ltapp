@@ -366,12 +366,83 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
 
     public void onResultPictureDate(int requestCode, int resultCode, Intent data) {
         Log.e("request code ", requestCode + " code");
-        if (requestCode != 2) {
+
+        if (requestCode == 203) {
+            if (data == null) {
+                launchFromGallary = false;
+                cropStatus = false;
+                        return;
+            }
+
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == Activity.RESULT_OK) {
+                //  Intrinsics.checkExpressionValueIsNotNull(result, "result");
+                Uri var10001 = result.getUri();
+                //Intrinsics.checkExpressionValueIsNotNull(var10001, "result.uri");
                 try {
-                    //  StoreImage(getContext(),imageUri,destination);
-                    image_info.add(file_name + ".jpg");
-                    if (count == 0) {
+                    // String resultdata123=data.getStringExtra("result");
+
+                    if (launchFromGallary)
+                        setImage(var10001, data);
+                    else {
+                        launchFromGallary = false;
+                        dialog.dismiss();
+                        cropStatus = true;
+                        setDataFromCameraAfterEdit(cropStatus);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (resultCode == 204) {
+            }
+        } else if (requestCode != 2) {
+            if (resultCode == Activity.RESULT_OK) {
+                launchFromGallary = false;
+                cropStatus = false;
+                setDataFromCameraAfterEdit(cropStatus);
+            } else {
+
+                {
+                    Log.e("path not found", "p");
+                    imgPath = null;
+                    bitmap = null;
+                    try {
+                        //setImage(data);
+                        launchImageCrop(data.getData());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        } else {
+            try {
+                if (resultCode == Activity.RESULT_OK) {
+                    //setImage(data, data);
+                    launchFromGallary = true;
+                    launchImageCrop(data.getData());
+                }
+            } catch (Exception e) {
+                Log.e("exception e", "e1");
+            }
+        }
+    }
+
+    private void setDataFromCameraAfterEdit(boolean cropStatus) {
+        try {
+            //  StoreImage(getContext(),imageUri,destination);
+            if (cropStatus) {
+                if (image_info.size() > 1) {
+                 //   image_info.set(sliderSelectedPos, file_name_crop + ".jpg");
+                    image_info.set(sliderSelectedPos, outPutFileImageNameList.get(sliderSelectedPos) + ".jpg");
+                } else {
+                   // image_info_crop.clear();
+                    //image_info_crop.add(file_name_crop + ".jpg");
+                    //Collections.copy(image_info, image_info_crop);
+                }
+            } else
+                image_info.add(file_name + ".jpg");
+            if (count == 0) {
                       /*  Intent intent=new Intent(getContext(), ImageEditer.class);
                         intent.putExtra("uri",image_info.get(0));
                         startActivity(intent);*/

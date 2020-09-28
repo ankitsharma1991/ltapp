@@ -60,6 +60,7 @@ public class UnSynPatientList extends BaseFragment implements RecyclerViewListen
             Intent intent = new Intent(getActivity(), UnsynReportView.class);
             Bundle args = new Bundle();
             args.putString("camp_name", patientList.get(position).getCampName());
+            args.putString("patient_name", patientList.get(position).getUserregistration_complete_name());
             args.putString("patient_id", patientList.get(position).getUserregistration_code());
             args.putString("label_id", patientList.get(position).getpLabelId());
             args.putString("process_date", patientList.get(position).getUserregistration_created_time());

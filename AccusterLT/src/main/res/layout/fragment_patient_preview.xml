@@ -18,7 +18,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/bag" />
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="vertical">
         <custom.AvenirRomanTextView
             android:id="@+id/camp_name"
             android:layout_width="100dp"
@@ -27,11 +32,12 @@
             android:layout_gravity="center_vertical"
             android:text="Camp Name" />
 
+</LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="right"
+            android:gravity="right|center"
+
             android:orientation="vertical">
 
             <LinearLayout
@@ -90,9 +96,34 @@
         </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="left"
+        android:orientation="horizontal">
+        <custom.AvenirRomanTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:maxLength="40"
+            android:text="Patient:" />
+
+        <custom.AvenirRomanTextView
+            android:id="@+id/patient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:maxLength="40"
+            />
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_height="wrap_content">
 
     <android.support.v7.widget.AppCompatButton
@@ -102,7 +133,7 @@
         android:layout_gravity="center_horizontal"
         android:backgroundTint="@color/blue"
         android:text="DownLoad Report Pdf"
-
+android:layout_marginTop="5dp"
         android:textColor="@color/textwhite"
         android:visibility="visible" />
         <android.support.v7.widget.AppCompatButton
@@ -115,7 +146,7 @@
             android:layout_alignParentRight="true"
 
             android:textColor="@color/textwhite"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </RelativeLayout>
 

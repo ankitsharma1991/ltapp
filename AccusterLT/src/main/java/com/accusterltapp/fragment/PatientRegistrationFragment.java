@@ -600,6 +600,7 @@ public class PatientRegistrationFragment extends BaseFragment implements View.On
             Bundle args = new Bundle();
             args.putString("camp_name", campName);
             args.putString("patient_id", patientList.get(position).getUserregistration_code());
+            args.putString("patient_name", patientList.get(position).getUserregistration_complete_name());
             args.putString("label_id", patientList.get(position).getpLabelId());
             args.putString("process_date", patientList.get(position).getDate());
             args.putString("time", patientList.get(position).getUserregistration_created_time());

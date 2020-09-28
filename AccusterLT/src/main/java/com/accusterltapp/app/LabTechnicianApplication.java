@@ -5,8 +5,16 @@ package com.accusterltapp.app;
  */
 
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
+
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.accusterltapp.service.Controller;
+import com.base.utility.SuncDataWorkManager;
+
+import java.util.concurrent.TimeUnit;
 
 public class LabTechnicianApplication extends MultiDexApplication {
     private static Controller controller;
@@ -14,6 +22,13 @@ public class LabTechnicianApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        PeriodicWorkRequest refreshWork =
+                new PeriodicWorkRequest.Builder(SuncDataWorkManager.class, 1, TimeUnit.HOURS)
+                        .addTag("SyncDataWorkManager")
+                        .build();
+        WorkManager.getInstance().enqueueUniquePeriodicWork("WORKER_TAG", ExistingPeriodicWorkPolicy.REPLACE, refreshWork);
+        //WorkManager.getInstance().enqueue(refreshWork);
+        Log.d("Application called","TEST");
     }
 
 

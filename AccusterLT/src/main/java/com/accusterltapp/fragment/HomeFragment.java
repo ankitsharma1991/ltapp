@@ -124,9 +124,9 @@ public class HomeFragment extends BaseFragment {
                     startActivity(new Intent(getActivity(), SynDataStatus.class));
                 }*/
 
-                MainActivity. navItemIndex=10;
-                ReportSettingFragment reportSettingFragment = new ReportSettingFragment();
-                setFragment(reportSettingFragment, ReportSettingFragment.class.getSimpleName());
+                MainActivity. navItemIndex=11;
+                CampListFragment1 campListFragment1 = new CampListFragment1();
+                setFragment(campListFragment1, CampListFragment1.class.getSimpleName());
                 ((MainActivity)getActivity()).setToolbarTitle();
             }
         });

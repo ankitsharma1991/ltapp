@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@drawable/navbg1080"
+        android:background="@color/colorPrimary"
         app:itemIconTint="@drawable/navigation_view_icon_tint_selector"
         app:itemTextColor="@drawable/navigation_view_text_selector"
         app:backgroundTint="@drawable/ripple_navigation_selector"
