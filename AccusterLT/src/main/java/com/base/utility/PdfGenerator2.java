@@ -90,17 +90,18 @@ public class PdfGenerator2 extends PdfPageEventHelper {
             patientVillage, patientCity, patientPostalCode, patientEmail, appointmentID;
     private String patientID, genderPos;
     private Context mContext;
-
+        private  boolean pdfStatus,selectedReportStatus;
     public PdfGenerator2(Context context) {
         mContext = context;
     }
 
 
 
-    public void generatePDF(ApprovedReportDetailsList list ) {
+    public void generatePDF(ApprovedReportDetailsList list, boolean selectedReportStatus1) {
         float height, width;
         RegisterPatient registerPatients=list.getUserdetails().get(0);
         data=list;
+        selectedReportStatus = selectedReportStatus1;
 
         //create a new document
         document = new Document(PageSize.A4,0f,0,20f,200);
@@ -1188,6 +1189,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
         PdfPTable footerTbl1 = new PdfPTable(1);
         footerTbl1.setTotalWidth(900f);
         footerTbl1.setHorizontalAlignment(Element.ALIGN_CENTER);
+
         PdfPCell cel = new PdfPCell();
         cel.addElement(new Phrase("----END OF THE REPORT----", new Font(Font.FontFamily.TIMES_ROMAN, 14.0f, Font.BOLD, BaseColor.BLACK)));
         // cell1.addElement(new Phrase(current_page + " of " + total_page, new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
@@ -1195,7 +1197,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
         // cell.PaddingLeft = 10;
         cel.setPaddingLeft(10);
         footerTbl1.addCell(cel);
-        footerTbl1.writeSelectedRows(0, -1, 200, 200, writer.getDirectContent());
+        footerTbl1.writeSelectedRows(0, -1, 200, 215, writer.getDirectContent());
 
         Paragraph footer= new Paragraph("");
         //footer.Alignment = Element.ALIGN_RIGHT;
@@ -1207,6 +1209,8 @@ public class PdfGenerator2 extends PdfPageEventHelper {
         footerTbl.setTotalWidth(100f);
         footerTbl.setLockedWidth(true);
         footerTbl.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+       // footerTbl.writeSelectedRows(0, -1, 0, 250, writer.getDirectContent());
         PdfPCell cell = new PdfPCell();
         ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
         Heleprec.sinature.compress(Bitmap.CompressFormat.PNG, 100, stream2);
@@ -1219,28 +1223,61 @@ public class PdfGenerator2 extends PdfPageEventHelper {
             e.printStackTrace();
         } // image2 = Image.getInstance(stream2.toByteArray());
         // image2.setAbsolutePosition(width-500, height - 100);
-        image2.scaleToFit(20, 5);
-        image2.scaleAbsolute(20,5);
+        image2.scaleToFit(50, 25);
+        image2.scaleAbsolute(50,25);
 
-
-        cell.addElement(image2);
         PdfPCell cell1=new PdfPCell();
+        cell1.addElement(new Phrase("Pathalogist : "));
+        //cell1.addElement(new Phrase("    "+writer.getPageNumber(), new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+
+        PdfPTable footerTbl3 = new PdfPTable(1);
+
+        // footerTbl.se(6);
+        //er.setWidths(new int[]{6, 24});
+        footerTbl3.setTotalWidth(100f);
+         footerTbl.setLockedWidth(true);
+        footerTbl3.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+        PdfPCell cell2 =  new PdfPCell();
+       // cell2.setVerticalAlignment(Element.ALIGN_RIGHT);
+        //cell2.addElement(new Phrase("       (--------------------)", new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD)));
+       // cell2.addElement(new Phrase(current_page +"", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+       // cell2.addElement(new Phrase("(------------------)", new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD)));
+        cell2.addElement(new Phrase(current_page +"", new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+
+        //cell2.setPaddingBottom(10);
+        Log.e("logo= PDF2=", "selectedReportStatus" + selectedReportStatus);
+        if (selectedReportStatus)
+        cell.addElement(image2);
+
+
+        //cell2.addElement(new Phrase(""+current_page  , new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
+        cell2.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        cell2.setPaddingLeft(90);
+        cell2.setPaddingBottom(90);
+        cell2.setBorder(Rectangle.NO_BORDER);
+
+
         // cell1.setBorder(Rectangle.BOX);
+         cell1.setBorderWidthTop(0);
         cell1.setBorderWidthRight(0);
         cell1.setBorderWidthLeft(0);
         cell1.setBorderWidthBottom(0);
-        cell1.setBorderWidthTop(1f);
+       // cell1.setBorderWidthTop(1f);
         // cell1.addElement(new Phrase("(------------------------)", new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD)));
-        cell1.addElement(new Phrase("Pathalogist - "+data.getPathlogist().getPathlogist(), new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD)));
-        cell1.addElement(new Phrase("    "+writer.getPageNumber(), new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD)));
         // cell.Border = 0;
         current_page=current_page+1;
+        cell.setPaddingLeft(10);
         cell.setBorder(Rectangle.NO_BORDER);
         cell.setVerticalAlignment(Element.ALIGN_BOTTOM);
         cell1.setHorizontalAlignment(Element.ALIGN_RIGHT);
-        footerTbl.addCell(cell);
+
         footerTbl.addCell(cell1);
-        footerTbl.writeSelectedRows(0, -1, 415, 150, writer.getDirectContent());
+        footerTbl.addCell(cell);
+        footerTbl3.addCell(cell2);
+        footerTbl.writeSelectedRows(0, -1, 415, 165, writer.getDirectContent());
+        footerTbl3.writeSelectedRows(0, -1, 440, 130, writer.getDirectContent());
+
         PdfPTable footerTbl2 = new PdfPTable(2);
 
         footerTbl2.setWidthPercentage(80);
@@ -1357,13 +1394,15 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                 //  pdfPTable.addCell(Html.toHtml(Html.fromHtml(reult)));
 
                 PdfPCell pdfWordCell = new PdfPCell();
-                Phrase firstLine = new Phrase(subTestDetails.getResult().replaceAll("[^0-9.]", ""), boldFont);
+               // Phrase firstLine = new Phrase(subTestDetails.getResult().replaceAll("[^0-9.]", ""), boldFont);
+                Phrase firstLine = new Phrase(subTestDetails.getResult());
                 pdfWordCell.setBorder(Rectangle.NO_BORDER);
 
                 pdfWordCell.addElement(firstLine);
                 pdfPTable.addCell(pdfWordCell);
             } else {
-                Paragraph     p1 = new Paragraph(subTestDetails.getResult().replaceAll("[^0-9.]", ""), font);
+                //Paragraph     p1 = new Paragraph(subTestDetails.getResult().replaceAll("[^0-9.]", ""), font);
+                Paragraph     p1 = new Paragraph(subTestDetails.getResult());
                 p1.setFont(font);
                 PdfPCell pdfWordCell = new PdfPCell(p1);
                 pdfWordCell.setVerticalAlignment(Element.ALIGN_CENTER);

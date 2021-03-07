@@ -34,6 +34,7 @@ private  boolean img_pri;
     private String test_low_bound_male;
     private String test_price;
     private String test_code;
+    private String report_id;
     private String test_name;
     private String image_permission;
 
@@ -107,6 +108,10 @@ private  boolean img_pri;
         return TextUtils.isEmpty(test_code) ? "" : test_code;
     }
 
+
+    public String getTestReportId() {
+        return TextUtils.isEmpty(report_id) ? "" : report_id;
+    }
     public String getTest_name() {
         return test_name;
     }
@@ -147,6 +152,9 @@ private  boolean img_pri;
         this.test_code = test_code;
     }
 
+    public void setTestReportId(String reportid) {
+        this.report_id = reportid;
+    }
     public void setTest_name(String test_name) {
         this.test_name = test_name;
     }

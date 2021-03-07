@@ -1,5 +1,7 @@
 package com.accusterltapp.service;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
@@ -7,7 +9,6 @@ import java.util.Set;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-
 
 public class CustomRequestInterceptor implements Interceptor {
     public HashMap<String, String> headerMap;
@@ -24,6 +25,11 @@ public class CustomRequestInterceptor implements Interceptor {
             for (String key : keySet) {
                 request = chain.request().newBuilder().addHeader(key, headerMap.get(key)).build();
             }
+// for request size
+
+            long requestLength = request.body().contentLength();
+            Log.d("RESQUEST body =",""+request.body());
+            Log.d("RESQUEST body SIZE =",""+requestLength);
 
         }
         Response response = chain.proceed(request);

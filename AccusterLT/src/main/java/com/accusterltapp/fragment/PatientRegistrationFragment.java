@@ -552,9 +552,12 @@ public class PatientRegistrationFragment extends BaseFragment implements View.On
         } else if (view.getId() == R.id.add) {
             if (Validation()) {
                 if (!TextUtils.isEmpty(labelid.getText())) {
-
+/*
                     if (tableCamp.getCampList(camp_list) != null)
-                        if (tableCamp.getCampList(camp_list).size() > 0)
+                        if (tableCamp.getCampList(camp_list).size() > 0)*/
+                    if (camp_list != null)
+                        if (camp_list.size() > 0)
+
                             updatePatient();
                         else {
                             final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
@@ -569,9 +572,13 @@ public class PatientRegistrationFragment extends BaseFragment implements View.On
                             alertDialog.show();
                         }
                 } else {
-                    if (tableCamp.getCampList(camp_list) != null)
-                        if (tableCamp.getCampList(camp_list).size() > 0)
-                    SetRealmPatientDetail();
+                   // if (tableCamp.getCampList(camp_list) != null)
+                     //   if (tableCamp.getCampList(camp_list).size() > 0)
+
+                    if (camp_list != null)
+                        if (camp_list.size() > 0)
+
+                            SetRealmPatientDetail();
                         else {
                             final AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
                             alertDialog.setCancelable(true);
@@ -761,7 +768,6 @@ public class PatientRegistrationFragment extends BaseFragment implements View.On
     public void onBackPressed() {
 
         Log.e("onresu callled my work", "resujme");
-
 
         Log.e("listener work", "onKey Back listener is working!!!");
         if (AppPreference.getBoolean(getActivity(), AppPreference.TEST_TABLE_UPDATE)) {

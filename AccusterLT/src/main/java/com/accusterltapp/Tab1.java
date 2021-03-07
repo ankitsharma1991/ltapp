@@ -30,6 +30,7 @@ import com.accusterltapp.service.NetworkCallContext;
 import com.accusterltapp.table.TableCamp;
 import com.accusterltapp.table.TablePatient;
 import com.accusterltapp.table.TableQcData;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -122,7 +123,7 @@ swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                           /// Log.e("happen qcdata", response.toString());
+                            Log.e("happen qcdata", response.toString());
 
                         }
                     }, new Response.ErrorListener() {
@@ -132,6 +133,11 @@ swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener
                     Log.e("error", error.toString());
                 }
             });
+            //queue.add(request);
+            request.setRetryPolicy(new DefaultRetryPolicy(
+                    15000,
+                    2,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(request);
         }
         catch (Exception e)

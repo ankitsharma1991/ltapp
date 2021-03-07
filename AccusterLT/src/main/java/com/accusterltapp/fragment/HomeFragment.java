@@ -125,9 +125,10 @@ public class HomeFragment extends BaseFragment {
                 }*/
 
                 MainActivity. navItemIndex=11;
-                CampListFragment1 campListFragment1 = new CampListFragment1();
-                setFragment(campListFragment1, CampListFragment1.class.getSimpleName());
+                CampListFragment1 mAboutU1 = new CampListFragment1();
+                setFragment(mAboutU1, CampListFragment1.class.getSimpleName());
                 ((MainActivity)getActivity()).setToolbarTitle();
+                Heleprec.avroverreport=true;
             }
         });
 

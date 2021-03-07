@@ -52,6 +52,7 @@ import com.accusterltapp.model.QcData;
 import com.accusterltapp.model.QcDataList;
 import com.accusterltapp.model.SubTestDetails;
 import com.accusterltapp.service.ApiConstant;
+import com.accusterltapp.service.NetworkUtil;
 import com.accusterltapp.table.TableCamp;
 import com.accusterltapp.table.TablePackageList;
 import com.accusterltapp.table.TablePatient;
@@ -96,15 +97,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     String  testName;
     private int sletectedItem = 0;
     private static final int CAMERA_REQUEST = 1888;
-    public String reportFileName = "";
+    public static String reportFileName = "";
     boolean a=true;
     String versionName;
+    private String ltid;
     String testNamec3=null;
     public QcData qcdata;
     String string_for_l1="##:,Glu_r,mg?dl,1.645,L1,LA124,:##!";
     String  string_for_l2="##:,Glu_r,mg?dl,1.645,L2,LA124,:##!";
     String string_for_c_data="##:,Glu-R,mg/dl,796.804,C1,:##796.804 ##:,Glu-R,mg/dl,764.489,C2,:##764.489 ##:,Glu-R,mg/dl,813.557,C3,:##813.557";
     private String[] activityTitles;
+    private TableCamp tableCamp;
     private StringBuffer mBufferTestResponse = new StringBuffer();
     @SuppressLint("HandlerLeak")
     @Override
@@ -112,6 +115,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
        TableWidalData tableWidalTest=new TableWidalData(this);
+        tableCamp = new TableCamp(this);
+        getUpdatedCampListFromServer();
         Log.e("the widal",tableWidalTest.mDbObject+"data");
         Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -898,5 +903,56 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onResume();
 
         Log.e("on resume call","onresume");
+    }
+
+    public  void getUpdatedCampListFromServer(){
+        ltid= AppPreference.getString(this, AppPreference.USER_ID);
+        HashMap<String, String> bodyMap = new HashMap<>();
+        bodyMap.put("ltId", AppPreference.getString(this, AppPreference.USER_ID));
+        if (NetworkUtil.checkInternetConnection(this)) {
+            com.android.volley.RequestQueue queue = Volley.newRequestQueue(this);
+            StringRequest sr = new StringRequest(Request.Method.POST, ApiConstant.BASE_URL1+"getListApiCamp", new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    // mPostCommentResponse.requestCompleted();
+                    //  System.out.print(response);
+                    Log.e("response",response);
+                    Gson gn=new Gson();
+                    CampList1 campList=gn.fromJson(response,CampList1.class);
+
+                    if (campList != null && campList.getStatus().equalsIgnoreCase(ApiConstant.SUCCESS)
+                            && campList.getCampList() != null && !campList.getCampList().isEmpty()) {
+                        ArrayList<CampDetails> campListModel = new ArrayList<>();
+                        //tableCamp.getCampList(campListModel);
+                        ArrayList<CampDetails1> list1=campList.getCampList();
+                        boolean falg=false;
+                        //tableCamp.isTableEmpty();
+                        //  setupRecycler();
+                       // tableCamp.insertCampListFormServer1(list1);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("error ",error.toString());
+                    //toString////////mPostCommentResponse.requestEndedWithError(error);
+                }
+            }){
+                @Override
+                protected Map<String,String> getParams(){
+                    Map<String,String> params = new HashMap<String, String>();
+                    //    String ap=AppPreference.USER_ID;
+                    params.put("ltId",ltid);
+
+                    return params;
+                }
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    return Collections.emptyMap();
+                }
+            };
+            queue.add(sr);
+        }
     }
 }

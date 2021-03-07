@@ -22,13 +22,19 @@
 
     <application
         android:name=".app.LabTechnicianApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:fullBackupOnly="false"
         android:icon="@drawable/accuster"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
-
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
+
+        <uses-library android:name="org.apache.http.legacy"
+            android:required="false"/>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"

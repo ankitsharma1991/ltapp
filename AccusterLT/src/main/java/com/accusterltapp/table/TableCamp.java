@@ -70,6 +70,8 @@ public class TableCamp extends BaseTable {
         return mcursor.getInt(mcursor.getColumnIndex("count")) <= 0;
     }
 
+
+
     private CampDetails addCampToList(Cursor mcursor) {
         CampDetails details = new CampDetails();
         details.setCampID(mcursor.getString(mcursor.getColumnIndex(CAMP_ID)));
@@ -183,7 +185,7 @@ public class TableCamp extends BaseTable {
             Log.e("data insertid","data");
         } catch (Exception e) {
             Log.e("data not insertid ","not");
-            e.printStackTrace();
+           // e.printStackTrace();
         } finally {
             mDbObject.endTransaction();
         }
@@ -211,7 +213,18 @@ public class TableCamp extends BaseTable {
         }
         return patientList;
     }
+/*
 
+    public ArrayList<CampDetails1> getCampListForCampDetails1(ArrayList<CampDetails1> patientList1) {
+        Cursor mcursor = makeRawQuery("SELECT *  from " + TABLE_CAMP);
+        if (mcursor != null && mcursor.moveToFirst()) {
+            do {
+                patientList1.add(addCampToList(mcursor));
+            } while (mcursor.moveToNext());
+        }
+        return patientList1;
+    }
+*/
 
     public ArrayList<CampDetails> getCampListToSyn(ArrayList<CampDetails> patientList) {
         Cursor mcursor = makeRawQuery("SELECT *  from " + TABLE_CAMP + " where " + SYN_STATUS + " = 0");

@@ -218,7 +218,7 @@ boolean  status=false;
             StringRequest sr = new StringRequest(Request.Method.POST, ApiConstant.BASE_URL1 + "getReportDetailsLtApi", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Log.d("response", response);
+                    Log.d("response REport= ", response);
                     pd.dismiss();
                     try {
                         JSONObject object = new JSONObject(response);

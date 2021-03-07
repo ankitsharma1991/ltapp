@@ -44,6 +44,9 @@ public class TestDetails {
     }
 
     public SubTestDetails getChildItem(int index) {
+       if (index>=test_list.size())
+           return test_list.get(test_list.size()-1);
+       else
         return test_list.get(index);
     }
 

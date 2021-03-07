@@ -34,7 +34,7 @@
         <custom.AvenirRomanTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".15"
+            android:layout_weight=".20"
             android:imeOptions="flagNoExtractUi"
             android:text="Serial No"
             android:textColor="@color/textcolor1"
@@ -44,10 +44,10 @@
         <custom.AvenirRomanTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".24"
+            android:layout_weight=".20"
             android:gravity="center"
             android:imeOptions="flagNoExtractUi"
-            android:text="Pateint_name"
+            android:text="Patient_name"
             android:textColor="@color/textcolor1"
             android:textSize="@dimen/textsize" />
 
@@ -56,7 +56,7 @@
             android:id="@+id/total_test"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".1"
+            android:layout_weight=".2"
             android:gravity="center"
             android:imeOptions="flagNoExtractUi"
             android:text="Age"
@@ -71,6 +71,7 @@
             android:gravity="center"
             android:imeOptions="flagNoExtractUi"
             android:text="Amount"
+            android:visibility="gone"
             android:textColor="@color/textcolor1"
             android:textSize="14sp" />
 

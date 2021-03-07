@@ -47,6 +47,7 @@ public class CampListFragment1 extends BaseFragment implements RecyclerViewListe
     private TableCamp tableCamp;
     ProgressDialog progress;
     String ltid=null;
+    ArrayList<CampDetails1> camp_to_inser=new ArrayList<>();
     android.widget.ProgressBar pb;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,36 +55,68 @@ public class CampListFragment1 extends BaseFragment implements RecyclerViewListe
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.activity_list_patient, container, false);
         tableCamp = new TableCamp(getActivity());
-        pb=view.findViewById(R.id.pb);
+        pb = view.findViewById(R.id.pb);
         progress = new ProgressDialog(getContext());
         progress.setCancelable(false);
         progress.setMessage("Loading ...");
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-     //   progress.show();
-       // pb.setVisibility(View.VISIBLE);
+        //   progress.show();
+        // pb.setVisibility(View.VISIBLE);
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ltid= AppPreference.getString(getActivity(), AppPreference.USER_ID);
-       // Log.d("response we",tr);
+        ltid = AppPreference.getString(getActivity(), AppPreference.USER_ID);
+        // Log.d("response we",tr);
         // com.android.volley.RequestQueue rq= Volley.newRequestQueue(this.getContext());
         com.android.volley.RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        StringRequest sr = new StringRequest(Request.Method.POST,ApiConstant.BASE_URL1+"getListApiCamp", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST, ApiConstant.BASE_URL1 + "getListApiCamp", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 progress.dismiss();
-               // Log.e("close ","clos the progress");
-                Log.d("response",response);
+                // Log.e("close ","clos the progress");
+                Log.d("response", response);
                 try {
-                    JSONObject object =new JSONObject(response);
-                    Gson gn=new Gson();
-                    CampList1 clist=gn.fromJson(response,CampList1.class);
-                    Log.d("arr",clist.toString());
-                    setupRecycler(clist.getCampList());
+                    JSONObject object = new JSONObject(response);
+                    Gson gn = new Gson();
+                    CampList1 campList = gn.fromJson(response, CampList1.class);
+                    Log.d("arr", campList.toString());
+
+
+                    if (campList != null && campList.getStatus().equalsIgnoreCase(ApiConstant.SUCCESS)
+                            && campList.getCampList() != null && !campList.getCampList().isEmpty()) {
+                   /*     ArrayList<CampDetails> campListModel = new ArrayList<>();
+                        tableCamp.getCampList(campListModel);
+                        ArrayList<CampDetails1> list1 = campList.getCampList();
+                        boolean falg = false;
+
+                        for (int i = 0; i < list1.size(); i++) {
+                            falg = false;
+                            for (int j = 0; j < campListModel.size(); j++) {
+                                if (list1.get(i).getCamp_code().equals(campListModel.get(j).getCamp_code())) {
+                                    falg = true;
+                                    break;
+
+                                }
+
+                            }
+                            if (!falg)
+                                camp_to_inser.add(list1.get(i));
+                        }
+                        //tableCamp.isTableEmpty();
+                        //  setupRecycler();
+                        //tableCamp.insertCampListFormServer1(camp_to_inser);
+                    }
+                    ArrayList<CampDetails> campListModel = new ArrayList<>();
+                    tableCamp.isTableEmpty();
+                   setupRecycler(tableCamp.getCampList(campListModel));
+                    //Log.e("size of list is ", campListModel.size() + "");
+*/
+                    }
+                     setupRecycler(campList.getCampList());
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                   // e.printStackTrace();
                 }
 
 
@@ -91,15 +124,15 @@ public class CampListFragment1 extends BaseFragment implements RecyclerViewListe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("error ",error.toString());
+                Log.d("error ", error.toString());
                 // mPostCommentResponse.requestEndedWithError(error);
             }
-        }){
+        }) {
             @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
-            //    String ap=AppPreference.USER_ID;
-                params.put("ltId",ltid);
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                //    String ap=AppPreference.USER_ID;
+                params.put("ltId", ltid);
 
                 return params;
             }
@@ -109,13 +142,19 @@ public class CampListFragment1 extends BaseFragment implements RecyclerViewListe
                 return Collections.emptyMap();
             }
         };
-        if(Heleprec.list!=null)
+        /*if(Heleprec.list!=null)
         {
             setupRecycler(Heleprec.list);
         }
-        else
+        else*/
         queue.add(sr);
-//
+   /* }
+    else {
+            Log.e("not internet","");
+            ArrayList<CampDetails> campList = new ArrayList<>();
+            setupRecycler(tableCamp.getCampList(campList));
+        }
+//*/
         return view;
     }
     private void setupRecycler(ArrayList<CampDetails1> campList) {
@@ -143,6 +182,7 @@ if (Heleprec. avroverreport)
     ApprovedReportFragment patient_detail = new ApprovedReportFragment();
     Bundle bundle = new Bundle();
     bundle.putString("campCode", campList1.get(position).getCamp_code());
+    bundle.putString("campName", campList1.get(position).getName());
     Heleprec.current_camp_name=hashMap.get("campname");
     patient_detail.setArguments(bundle);
     setFragment(patient_detail, ApprovedReportFragment.class.getSimpleName());

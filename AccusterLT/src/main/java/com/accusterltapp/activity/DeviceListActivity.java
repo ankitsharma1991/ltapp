@@ -22,10 +22,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.accusterltapp.database.AppPreference;
+import com.accusterltapp.fragment.CampsListFragment;
+import com.accusterltapp.model.CampDetails1;
+import com.accusterltapp.model.CampList1;
 import com.accusterltapp.model.Heleprec;
 import com.accusterltapp.R;
+import com.accusterltapp.service.ApiConstant;
+import com.accusterltapp.service.NetworkUtil;
+import com.accusterltapp.table.TableCamp;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.base.model.CampDetails;
+import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import static com.accusterltapp.activity.Splash.device;
@@ -256,6 +274,7 @@ public class DeviceListActivity extends AppCompatActivity {
             }
         }
     }
+
 
 
 }

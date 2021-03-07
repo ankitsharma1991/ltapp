@@ -2,6 +2,7 @@ package com.accusterltapp.service;
 
 
 import android.util.Base64;
+import android.util.Log;
 
 import com.base.utility.ToastUtils;
 
@@ -43,7 +44,8 @@ public class Controller {
             if (responseCall != null) {
                 if (baseNetworkRequest.isShowProgressBar) {
                     //ProgressBar.showDialog(baseNetworkRequest.context, "Please Wait...", false);
-                    ProgressBar.showDialog(baseNetworkRequest.context, "Please Wait...", false);
+                    Log.e("TEst hello", "On succdxxx");
+                    ProgressBar.showDialog(baseNetworkRequest.context, "Please Wait...", true, false);
                 }
                 responseCall.enqueue(mNetworkResponse);
             }

@@ -1,6 +1,8 @@
 package com.accusterltapp.model;
 
-public class ApprovedReportTestDetails {
+import java.util.ArrayList;
+
+public class ApprovedReportTestDetails  {
     String  method;
     String  test_head;
     String  head_id;
@@ -171,4 +173,53 @@ public class ApprovedReportTestDetails {
     String   organization_address;
     String  report_id;
     String  report_approve_status;
+
+    //ADDON fields
+
+    String  image_permission;
+    String  test_code;
+    String  test_id;
+    String  test_price;
+    String  camp_code;
+
+    public String getImage_permission() {
+        return image_permission;
+    }
+
+    public void setImage_permission(String image_permission) {
+        this.image_permission = image_permission;
+    }
+
+    public String getTest_code() {
+        return test_code;
+    }
+
+    public void setTest_code(String test_code) {
+        this.test_code = test_code;
+    }
+
+    public String getTest_id() {
+        return test_id;
+    }
+
+    public void setTest_id(String test_id) {
+        this.test_id = test_id;
+    }
+
+    public String getTest_price() {
+        return test_price;
+    }
+
+    public void setTest_price(String test_price) {
+        this.test_price = test_price;
+    }
+
+    public String getCamp_code() {
+        return camp_code;
+    }
+
+    public void setCamp_code(String camp_code) {
+        this.camp_code = camp_code;
+    }
+
 }

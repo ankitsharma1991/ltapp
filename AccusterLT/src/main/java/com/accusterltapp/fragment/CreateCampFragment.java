@@ -79,6 +79,7 @@ public class CreateCampFragment extends Fragment implements View.OnClickListener
         bt_save.setOnClickListener(this);
         starttime.setOnClickListener(this);
         endtime.setOnClickListener(this);
+
         startdate.setOnClickListener(this);
 
 

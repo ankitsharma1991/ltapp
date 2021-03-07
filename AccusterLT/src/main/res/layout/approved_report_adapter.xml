@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:focusable="true"
+
     android:focusableInTouchMode="true"
     android:gravity="center_vertical"
     android:orientation="horizontal"
@@ -13,7 +14,8 @@
         android:id="@+id/tv_pa_labelNo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight=".16"
+        android:layout_weight=".20"
+        android:gravity="center"
         android:imeOptions="flagNoExtractUi"
         android:text="Serial No"
         android:textColor="@color/textcolor1"
@@ -37,7 +39,7 @@
         android:id="@+id/age"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight=".1"
+        android:layout_weight=".2"
         android:gravity="center"
         android:imeOptions="flagNoExtractUi"
 
@@ -50,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_weight=".2"
         android:gravity="center"
+        android:visibility="gone"
         android:imeOptions="flagNoExtractUi"
         android:text="Total Patient"
         android:textColor="@color/textcolor1"
@@ -58,9 +61,9 @@
     <ImageView
         android:id="@+id/iv_info"
         android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_weight="0.14"
+        android:layout_height="16dp"
         android:layout_gravity="center"
+        android:layout_weight="0.18"
         android:src="@drawable/info1" />
 
     <ImageView

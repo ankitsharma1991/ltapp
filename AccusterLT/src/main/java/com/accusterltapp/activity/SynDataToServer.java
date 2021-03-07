@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Toast;
 
 import com.accusterltapp.R;
 import com.accusterltapp.app.LabTechnicianApplication;
@@ -33,6 +34,8 @@ import com.accusterltapp.service.ApiConstant;
 import com.accusterltapp.service.BaseNetworkRequest;
 import com.accusterltapp.service.ImgService;
 import com.accusterltapp.service.NetworkCallContext;
+import com.accusterltapp.service.NetworkUtil;
+import com.accusterltapp.service.ProgressBar;
 import com.accusterltapp.table.TableCamp;
 import com.accusterltapp.table.TablePackageList;
 import com.accusterltapp.table.TablePatient;
@@ -53,6 +56,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import id.zelory.compressor.Compressor;
 import okhttp3.MediaType;
@@ -62,15 +66,32 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.accusterltapp.service.ProgressBar.animation;
+import static com.accusterltapp.service.ProgressBar.mProgressDialog;
+
 public class SynDataToServer implements NetworkCallContext {
     private Context mContext;
     ProgressDialog progress;
     File file;
+    int numberOfResType = 0;
+    boolean progressMethodCall;
+    List<String> numberOfPendingTeble;
     int jumpTime = 0;
+
     public SynDataToServer(Context context) {
+
         mContext = context;
+        if (!NetworkUtil.checkInternetConnection(context))
+        {
+            Toast.makeText(context,"Please check your internet connection.",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        numberOfPendingTeble = new ArrayList<>();
+        numberOfPendingTeble.clear();
+        getPendingDataFromMultipleTable();
         synCampList();
-       // synWidalTest();
+        // synWidalTest();
 //      synImagesToServer();
     }
 
@@ -81,7 +102,6 @@ public class SynDataToServer implements NetworkCallContext {
         WidalDataSynModel widalDataSynModel = new WidalDataSynModel();
         widalDataSynModel.setTestlist(list);
         Gson gson = new Gson();
-        ;
         Log.e(" the json data", gson.toJson(widalDataSynModel));
         com.android.volley.RequestQueue queue = Volley.newRequestQueue(mContext);
         JSONObject job = null;
@@ -127,23 +147,23 @@ public class SynDataToServer implements NetworkCallContext {
         SynModel campSynModel = new SynModel();
         Log.e("length camp ", campDetails.size() + "");
         if (!campDetails.isEmpty()) {
-           // download(null);
+            download(null);
             campSynModel.setCamp_list(campDetails);
             Log.e("camp json", new Gson().toJson(campSynModel));
             HashMap<String, String> map = new HashMap<>();
             map.put("camp_sync_list", new Gson().toJson(campSynModel));
             BaseNetworkRequest<CampSynResponse> mRequest = new BaseNetworkRequest<>(mContext, ApiConstant.CAMP_SYN,
-                    this, map, true, CampSynResponse.class);
+                    this, map, false, CampSynResponse.class);
             LabTechnicianApplication.getController(ApiConstant.BASE_URL).enqueueCall(mRequest);
             Log.v("list_data", new Gson().toJson(campSynModel));
         } else {
-           // download(null);
+          //  download(null);
             synPatientList();
         }
     }
 
     public void synPatientList() {
-        TablePatient tableCamp = new TablePatient( mContext);
+        TablePatient tableCamp = new TablePatient(mContext);
         ArrayList<RegisterPatient> campDetails = new ArrayList<>();
         tableCamp.getallPatientToSync(campDetails);
         Gson g = new Gson();
@@ -155,23 +175,23 @@ public class SynDataToServer implements NetworkCallContext {
         SynModel campSynModel = new SynModel();
         Log.e("length ", campDetails.size() + "");
         if (!campDetails.isEmpty()) {
-          //  download(null);
+            download(null);
             HashMap<String, String> map = new HashMap<>();
             campSynModel.setPatient_list(campDetails);
             Log.e("patient data", new Gson().toJson(campSynModel));
             map.put("patient_sync_list", new Gson().toJson(campSynModel));
-            BaseNetworkRequest<PatientSynResponse> mRequest = new BaseNetworkRequest<>( mContext, ApiConstant.PATIENT_SYN,
-                    this, map, true, PatientSynResponse.class);
+            BaseNetworkRequest<PatientSynResponse> mRequest = new BaseNetworkRequest<>(mContext, ApiConstant.PATIENT_SYN,
+                    this, map, false, PatientSynResponse.class);
             LabTechnicianApplication.getController(ApiConstant.BASE_URL).enqueueCall(mRequest);
             Log.e("happen ", "or not ");
         } else {
-           // download(null);
+            download(null);
             synReportList();
         }
     }
 
     public void synReportList() {
-        TablePatientTest tableCamp = new TablePatientTest( mContext);
+        TablePatientTest tableCamp = new TablePatientTest(mContext);
         ArrayList<TesTDetailsToSyn> campDetails = new ArrayList<>();
         tableCamp.getallPatientTestToSyn(campDetails);
         SynModel campSynModel = new SynModel();
@@ -211,8 +231,8 @@ public class SynDataToServer implements NetworkCallContext {
             if (subTestDetails.size() > 0)
                 synImagesToServer(subTestDetails);
             map.put("report_sync_list", new Gson().toJson(reportSync));
-            BaseNetworkRequest<ReportSyncResponse> mRequest = new BaseNetworkRequest<>( mContext, ApiConstant.REPORT_SYN,
-                    this, map, true, ReportSyncResponse.class);
+            BaseNetworkRequest<ReportSyncResponse> mRequest = new BaseNetworkRequest<>(mContext, ApiConstant.REPORT_SYN,
+                    this, map, false, ReportSyncResponse.class);
             LabTechnicianApplication.getController(ApiConstant.BASE_URL).enqueueCall(mRequest);
 //            Log.e("api hit","not");
         } else {
@@ -228,14 +248,87 @@ public class SynDataToServer implements NetworkCallContext {
             HashMap<String, String> map = new HashMap<>();
             map.put("package_list", new Gson().toJson(campDetails));
             BaseNetworkRequest<UserLogin> mRequest = new BaseNetworkRequest<>((Activity) mContext, ApiConstant.PACKAGE_SYNC,
-                    this, map, true, UserLogin.class);
+                    this, map, false, UserLogin.class);
             LabTechnicianApplication.getController(ApiConstant.BASE_URL).enqueueCall(mRequest);
         }
     }
 
     @Override
     public void handleResponse(Object response, String type) {
-        Log.e("responce ", type);
+        Log.e("responce API ", type);
+
+        numberOfResType++;
+        Log.e("responce VALUES ", numberOfPendingTeble.size() + " No of Res TYpe=" + numberOfResType);
+        //progress.dismiss();
+
+        if (numberOfPendingTeble.size() == 1 && numberOfResType == 1) {
+
+            progressMethodCall = false;
+            mProgressDialog.setProgress(100);
+            animation.setIntValues(100);
+            animation.cancel();
+            mProgressDialog.setMessage("Data Synced \n 100%");
+            Log.e("responce API Per", "" + mProgressDialog.getProgress());
+            if (mProgressDialog.getProgress() == 100) {
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        Log.i("JO", "run");
+                        ProgressBar.dismissDialog();
+                    }
+                }, 5000);
+            }
+
+        } else if (numberOfPendingTeble.size() == 2 && numberOfResType == 2) {
+            progressMethodCall = false;
+            mProgressDialog.setProgress(100);
+            animation.setIntValues(100);
+            animation.cancel();
+            mProgressDialog.setMessage("Data Synced \n 100%");
+            Log.e("responce API Per", "" + mProgressDialog.getProgress());
+            if (mProgressDialog.getProgress() == 100) {
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        Log.i("JO", "run");
+                        ProgressBar.dismissDialog();
+                    }
+                }, 5000);
+            }
+
+        }
+        else if (numberOfPendingTeble.size() == 3 && numberOfResType == 3) {
+            progressMethodCall = false;
+            mProgressDialog.setProgress(100);
+            animation.setIntValues(100);
+            animation.cancel();
+            mProgressDialog.setMessage("Data Synced \n 100%");
+            Log.e("responce API Per", "" + mProgressDialog.getProgress());
+            if (mProgressDialog.getProgress() == 100) {
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        Log.i("JO", "run");
+                        ProgressBar.dismissDialog();
+                    }
+                }, 5000);
+            }
+
+        }
+        else if (numberOfPendingTeble.size() == 4 && numberOfResType == 4) {
+            progressMethodCall = false;
+            mProgressDialog.setProgress(100);
+            animation.setIntValues(100);
+            animation.cancel();
+            mProgressDialog.setMessage("Data Synced \n 100%");
+            Log.e("responce API Per", "" + mProgressDialog.getProgress());
+            if (mProgressDialog.getProgress() == 100) {
+                new Handler().postDelayed(new Runnable() {
+                    public void run() {
+                        Log.i("JO", "run");
+                        ProgressBar.dismissDialog();
+                    }
+                }, 5000);
+            }
+
+        }
         if (type.equalsIgnoreCase(ApiConstant.CAMP_SYN)) {
             CampSynResponse campSynResponse = (CampSynResponse) response;
             if (campSynResponse.getStatus().equalsIgnoreCase(ApiConstant.SUCCESS)) {
@@ -268,7 +361,7 @@ public class SynDataToServer implements NetworkCallContext {
             ReportSyncResponse campSynResponse = (ReportSyncResponse) response;
             Log.e("res", new Gson().toJson(campSynResponse));
             if (campSynResponse.getStatus().equalsIgnoreCase(ApiConstant.SUCCESS)) {
-                TablePatientTest tablePatient = new TablePatientTest( mContext);
+                TablePatientTest tablePatient = new TablePatientTest(mContext);
 //                ArrayList<SubTestDetails> subTestDetails=new ArrayList<>();
 //                for (int i=0;i<campSynResponse.getSync_report().length;i++)
 //                    tablePatient.getallPatientTest(subTestDetails,campSynResponse.getSync_report()[i]);
@@ -289,6 +382,8 @@ public class SynDataToServer implements NetworkCallContext {
     public void handleServerError(Object response, String type) {
         if (type.equalsIgnoreCase(ApiConstant.CAMP_SYN)) {
             Log.v("list_data", "error");
+            progressMethodCall = false;
+            progress.dismiss();
         }
     }
 
@@ -316,10 +411,10 @@ public class SynDataToServer implements NetworkCallContext {
                         file = new File("/storage/emulated/0/rapid/" + imageName.get(j).toString());
                         Bitmap bitmap;
                         try {
-                             bitmap = BitmapFactory.decodeFile(file.getPath());
+                            bitmap = BitmapFactory.decodeFile(file.getPath());
                             Log.e("name", bitmap.toString());
+                        } catch (OutOfMemoryError error) {
                         }
-                        catch (OutOfMemoryError error){}
                         final RequestBody reqFile = RequestBody.create(MediaType.parse("image/jpg"), new Compressor(mContext).compressToFile(file));
                         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), reqFile);
                         RequestBody name = RequestBody.create(MediaType.parse("text/plain"), file.getName());
@@ -336,7 +431,7 @@ public class SynDataToServer implements NetworkCallContext {
                             @Override
                             public void onResponse(Call<RepidTestReslt> call, Response<RepidTestReslt> response) {
                                 // Do Something
-                              //  progress.dismiss();
+                                //  progress.dismiss();
                                 try {
                                     Log.e("work", response.body().getImageName() + response.body().getStatus());
                                     //  String name=response.body().getImageName().replace(".jpg",);
@@ -352,7 +447,7 @@ public class SynDataToServer implements NetworkCallContext {
                             @Override
                             public void onFailure(Call<RepidTestReslt> call, Throwable t) {
                                 t.printStackTrace();
-                               // progress.dismiss();
+                                // progress.dismiss();
                                 Log.e("fail", t.getLocalizedMessage());
                             }
                         });
@@ -364,37 +459,32 @@ public class SynDataToServer implements NetworkCallContext {
 
 
     public void download(View view) {
-        final Handler handler = new Handler();
-       progress = new ProgressDialog(mContext);
+        //  final Handler handler = new Handler();
+
+
+        progress = new ProgressDialog(mContext);
         progress.setMessage("Data Syncing");
+
         progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
       /*  progress.setIndeterminate(true);
         progress.setMax(100);
         progress.setProgress(0);*/
 
-      // BELOW LINE COMMENTED BY JS
-       // progress.show();
+        // BELOW LINE COMMENTED BY JS
+        Log.d("already showing value=", "" + progress.isShowing());
+        if (!progressMethodCall) {
+            Log.d("animation END", "TESt2233");
 
-        ObjectAnimator animation = ObjectAnimator.ofInt(progress, "progress", 0, 100);
-        animation.setDuration(7000);
-        animation.setInterpolator(new DecelerateInterpolator());
-        animation.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) { }
+            //  progress.dismiss();
+            /// progress.show();
+            ProgressBar.showDialog(mContext, "Data Syncing", true, true);
 
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                //do something when the countdown is complete
-                progress.dismiss();
-            }
+            progressMethodCall = true;
 
-            @Override
-            public void onAnimationCancel(Animator animator) { }
+        } else {
 
-            @Override
-            public void onAnimationRepeat(Animator animator) { }
-        });
-        animation.start();
+        }
+
  /*       CircleProgressBar circleProgressBar = new CircleProgressBar(this);
         ((ViewGroup) findViewById(R.id.rlContainer)).addView(circleProgressBar);
         circleProgressBar.setProgress(65);
@@ -408,6 +498,47 @@ public class SynDataToServer implements NetworkCallContext {
 */
 
 
+    }
+
+    private void getPendingDataFromMultipleTable() {
+
+       // numberOfPendingTeble.clear();
+        Log.d("LIST SEIZE=", "" + numberOfPendingTeble.size());
+        //numberOfPendingTeble.clear();
+        //11
+        TableCamp tableCamp = new TableCamp(mContext);
+        ArrayList<CampDetails> campDetails = new ArrayList<>();
+        tableCamp.getCampListToSyn(campDetails);
+        if (!campDetails.isEmpty()) {
+            numberOfPendingTeble.add("1");
+            Log.d("added=", "111 called");
+        }
+        //22
+
+        TablePatient tableCamp2 = new TablePatient((Activity) mContext);
+        ArrayList<RegisterPatient> registerPatients = new ArrayList<>();
+        tableCamp2.getallPatientToSync(registerPatients);
+        if (!registerPatients.isEmpty()) {
+            numberOfPendingTeble.add("2");
+            Log.d("added=", "222 called");
+        }
+        //33
+        TablePatientTest tableCamp3 = new TablePatientTest((Activity) mContext);
+        ArrayList<TesTDetailsToSyn> tesTDetailsToSyns = new ArrayList<>();
+        tableCamp3.getallPatientTestToSyn(tesTDetailsToSyns);
+        if (!tesTDetailsToSyns.isEmpty()) {
+            numberOfPendingTeble.add("3");
+            Log.d("added=", "333 called");
+        }
+        //44
+        TablePackageList tableCamp4 = new TablePackageList((Activity) mContext);
+        ArrayList<TestDetails> testDetails = new ArrayList<>();
+        tableCamp4.getPackageListToSyn(testDetails);
+        if (!testDetails.isEmpty()) {
+            //numberOfPendingTeble.add("4");
+            Log.d("added=", "4444 called");
+        }
+        Log.d("LIST SEIZE NEW=", "" + numberOfPendingTeble.size());
     }
 }
 //    class RetrieveFeedTask extends AsyncTask<String, Void, Void> {

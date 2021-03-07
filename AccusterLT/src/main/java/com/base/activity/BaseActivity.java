@@ -6,14 +6,12 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.support.v7.widget.Toolbar;
@@ -22,12 +20,10 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 
-import com.base.utility.ToastUtils;
 import com.accusterltapp.R;
 import com.accusterltapp.activity.Splash;
 import com.accusterltapp.service.ProgressBar;
 import com.base.utility.Resource;
-import com.accusterltapp.table.TablePatientTest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -99,7 +95,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     public void showProgressDialog(String message) {
-        ProgressBar.showDialog(this, message, false);
+        ProgressBar.showDialog(this, message, true, false);
     }
 
     public void hideProgressDialog() {

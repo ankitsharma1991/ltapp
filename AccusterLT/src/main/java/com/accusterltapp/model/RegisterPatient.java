@@ -44,7 +44,7 @@ public class RegisterPatient implements Parcelable {
     private String pLabelId;
     private String userregistration_org_id;
     private String userregistration_Lt_id;
-    private String campName;
+    private String camp_name;
     private String userregistration_camp_code;
     public String userregistration_sync_id;
     private String userregistration_created_time;
@@ -192,11 +192,11 @@ public class RegisterPatient implements Parcelable {
     }
 
     public String getCampName() {
-        return campName;
+        return camp_name;
     }
 
-    public void setCampName(String campName) {
-        this.campName = campName;
+    public void setCampName(String camp_name) {
+        this.camp_name = camp_name;
     }
 
     public String getUserregistration_camp_code() {
@@ -243,7 +243,7 @@ public class RegisterPatient implements Parcelable {
         dest.writeString(this.pLabelId);
         dest.writeString(this.userregistration_org_id);
         dest.writeString(this.userregistration_Lt_id);
-        dest.writeString(this.campName);
+        dest.writeString(this.camp_name);
         dest.writeString(this.userregistration_camp_code);
         dest.writeString(this.userregistration_sync_id);
         dest.writeString(this.userregistration_created_time);
@@ -269,7 +269,7 @@ public class RegisterPatient implements Parcelable {
         this.pLabelId = in.readString();
         this.userregistration_org_id = in.readString();
         this.userregistration_Lt_id = in.readString();
-        this.campName = in.readString();
+        this.camp_name = in.readString();
         this.userregistration_camp_code = in.readString();
         this.userregistration_sync_id = in.readString();
         this.userregistration_created_time = in.readString();

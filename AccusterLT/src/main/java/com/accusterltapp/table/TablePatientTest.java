@@ -132,6 +132,7 @@ Log.e("test  not insertid","test");
         }
         return patientList;
     }
+
     public ArrayList<SubTestDetails> getallPatientTest(ArrayList<SubTestDetails> patientList,
                                                        String id) {
         Cursor mcursor = makeRawQuery("SELECT *  from " + TABLE_PATIENT_TEST + " where pid = '" +
@@ -143,6 +144,22 @@ Log.e("test  not insertid","test");
         }
         return patientList;
     }
+
+
+    public ArrayList<SubTestDetails> getallPatientTestBYReportId(ArrayList<SubTestDetails> patientList,
+                                                       String id,ArrayList<String> testIdList) {
+        for (int i = 0; i<testIdList.size();i++) {
+            Cursor mcursor = makeRawQuery("SELECT *  from " + TABLE_PATIENT_TEST + " where pid = '" + id + "' AND t_id = '" +testIdList.get(i) +"'  ORDER BY " + TEST_PROFILE_NAME);
+            //Cursor mcursor = makeRawQuery("SELECT *  from " + TABLE_PATIENT_TEST + " where report_id = '" + testIdList.get(i).toString() + "' ORDER BY " + TEST_PROFILE_NAME);
+
+            if (mcursor != null && mcursor.moveToFirst()) {
+                do {
+                    patientList.add(addPatientToList(mcursor));
+                } while (mcursor.moveToNext());
+            }
+        }
+        return patientList;
+    }
     private SubTestDetails addPatientToList(Cursor mcursor) {
         SubTestDetails details = new SubTestDetails();
         details.setTest_interpretation(mcursor.getString(mcursor.getColumnIndex("test_interpretation")));
@@ -151,6 +168,8 @@ Log.e("test  not insertid","test");
         details.setPatientId(mcursor.getString(mcursor.getColumnIndex(TEST_PATIENT_ID)));
         details.setTest_name(mcursor.getString(mcursor.getColumnIndex(TEST_NAME)));
         details.setTest_code(mcursor.getString(mcursor.getColumnIndex(TEST_CODE)));
+        details.setTestReportId(mcursor.getString(mcursor.getColumnIndex(REPORT_ID)));
+
         if (TextUtils.isEmpty(mcursor.getString(mcursor.getColumnIndex(RAPID_TEST_IMAGE))))
             details.setImagepre(false);
         else {

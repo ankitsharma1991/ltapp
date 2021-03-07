@@ -48,6 +48,7 @@ public class Splash extends AppCompatActivity {
         Intent i = new Intent(Splash.this, LoginActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
+
         finish();
     }
 

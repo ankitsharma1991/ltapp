@@ -4,6 +4,7 @@ package com.accusterltapp.service;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.accusterltapp.R;
@@ -29,15 +30,17 @@ public class ServiceResponse implements Callback<ResponseBody> {
 
     @Override
     public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> responseBody) {
+        Log.d("TEST333","TESttetset");
         if (baseNetworkRequest.isShowProgressBar) {
             ProgressBar.dismissDialog();
+
         }
         if (responseBody.isSuccessful()) {
             try {
                 Object response = responseBody.body().string();
                 String json = response.toString();
 
-
+                Log.d("ON SUCCESS","TESttetset");
                 if (!TextUtils.isEmpty(json)) {
                     //set raw response
                     if (baseNetworkRequest.responseType == null) {

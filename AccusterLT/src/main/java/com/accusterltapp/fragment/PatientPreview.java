@@ -21,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -44,12 +45,16 @@ import com.accusterltapp.activity.MainActivity;
 import com.accusterltapp.adapter.PatientTestListAdapter;
 import com.accusterltapp.adapter.SliderAddapterc;
 import com.accusterltapp.database.AppPreference;
+import com.accusterltapp.model.ApprovedReportDetailsList;
+import com.accusterltapp.model.ApprovedReportTestDetails;
 import com.accusterltapp.model.Heleprec;
 import com.accusterltapp.model.ImageName;
 import com.accusterltapp.model.RegisterPatient;
 import com.accusterltapp.model.SubTestDetails;
 import com.accusterltapp.service.ApiConstant;
 import com.accusterltapp.service.ImageLodingService;
+import com.accusterltapp.table.TablePackageTestDetail;
+import com.accusterltapp.table.TablePatient;
 import com.accusterltapp.table.TablePatientTest;
 import com.base.fragment.BaseFragment;
 import com.base.listener.RecyclerViewListener;
@@ -60,33 +65,39 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.google.gson.Gson;
-import com.yalantis.ucrop.UCrop;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.net.URI;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import ss.com.bannerslider.Slider;
 
+import static com.accusterltapp.activity.MainActivity.reportFileName;
+
 
 public class PatientPreview extends BaseFragment implements RecyclerViewListener, View.OnClickListener {
-    private custom.AvenirRomanTextView camp_name, patient_id, label_id, P_process_date, P_time;
+    private custom.AvenirRomanTextView camp_name, patient_name, patient_id, label_id, P_process_date, P_time;
     private RecyclerView recyclerView_test_list;
 
     File destination;
     String imgPath;
     Bitmap bitmap;
-    Uri outputFileUri;
+    Uri outputFileUri, oldOutputFileUri;
     Uri imageUri;
+    private ArrayList<Uri> outPutFileUrilList = new ArrayList<>();
+    private ArrayList<String> outPutFileImageNameList = new ArrayList<>();
     Slider slider;
     public final static int MY_PERMISSIONS_REQUEST = 10;
     int count = 0;
     int image_count = 1;
-    Button tv_add, tv_done,tv_Edit;
-    ArrayList<String> image_info;
+    Button tv_add, tv_done, tv_Edit;
+    ArrayList<String> image_info, image_info_crop;
     Dialog dialog;
     private ArrayList<SubTestDetails> mSubTestDetails = new ArrayList<>();
     private PatientTestListAdapter adapter;
@@ -95,6 +106,8 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
     private static final int CAMERA_REQUEST = 1888;
     private String testName = "", testResult = "", reportFileName = "";
     private RegisterPatient mRegisterPatient;
+    //private ApprovedReportTestDetails testDetails;
+    private ArrayList<String> patientTestId = new ArrayList<>();
     boolean flagselectall = false;
     ProgressDialog pd;
     private static final int PERMISSION_CALLBACK_CONSTANT = 100;
@@ -107,7 +120,10 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION};
     private SharedPreferences permissionStatus;
-    String file_name;
+    String file_name, file_name_crop;
+    boolean launchFromGallary, cropStatus;
+    private int sliderSelectedPos;
+    Uri uriFromCamera;
 
     @SuppressLint("HandlerLeak")
     @Override
@@ -116,8 +132,9 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_patient_preview, container, false);
         camp_name = view.findViewById(R.id.camp_name);
+        patient_name = view.findViewById(R.id.patient_name);
         patient_id = view.findViewById(R.id.patient_id);
-        all = (Button) view.findViewById(R.id.all);
+        all = view.findViewById(R.id.all);
         tv_widal = view.findViewById(R.id.tv_widal);
 
         tv_widal.setOnClickListener(new View.OnClickListener() {
@@ -237,6 +254,7 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
 
     public void SetData() {
         camp_name.setText(getArguments().getString("camp_name"));
+        patient_name.setText(getArguments().getString("patient_name"));
         patient_id.setText(getArguments().getString("patient_id"));
         label_id.setText(getArguments().getString("label_id"));
         P_process_date.setText(getArguments().getString("process_date"));
@@ -244,11 +262,18 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
                 DateTimeUtils.INPUT_DATE_YYYY_MM_DD_TS, DateTimeUtils.TIME_FORMAT));
 
         mRegisterPatient = getArguments().getParcelable("patientDetail");
+       // testDetails = getArguments().getParcelable("testDetail");
+        patientTestId = getArguments().getStringArrayList("patientTestId");
 
         patientTest = new TablePatientTest(getActivity());
-
-        patientTest.getallPatientTest(mSubTestDetails, getArguments().getString("patient_id"));
-
+        if (patientTestId!=null) {
+            if (patientTestId.size() > 0)
+               // insertPatientAndTestDetails();
+                patientTest.getallPatientTestBYReportId(mSubTestDetails, getArguments().getString("patient_id"), patientTestId);
+               // patientTest.getallPatientTest(mSubTestDetails, getArguments().getString("patient_id"));
+        }
+        else
+            patientTest.getallPatientTest(mSubTestDetails, getArguments().getString("patient_id"));
         adapter = new PatientTestListAdapter(getActivity(), mSubTestDetails, this);
         recyclerView_test_list.setAdapter(adapter);
     }
@@ -259,14 +284,14 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
 
         testName = hashMap.get("TestName");
         testResult = hashMap.get("result");
-        reportFileName = hashMap.get("TestName").toLowerCase() + getArguments().getString("patient_id").toLowerCase() + String.valueOf(System.currentTimeMillis());
+        reportFileName = hashMap.get("TestName").toLowerCase() + getArguments().getString("patient_id").toLowerCase() + System.currentTimeMillis();
 //        Intent intent = new Intent();
 
 //        intent.setType("image/*");
 //        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
 //        intent.setAction(Intent.ACTION_GET_CONTENT);
 //        getActivity().startActivityForResult(Intent.createChooser(intent,"Select Picture"),1);
-        ((MainActivity) getActivity()).reportFileName = reportFileName;
+        MainActivity.reportFileName = reportFileName;
 
         Image image;
         final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
@@ -281,16 +306,20 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
                         if (checkPermission()) {
                             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             count = 0;
-                            file_name = reportFileName + String.valueOf(System.currentTimeMillis()) + "cam";
+                            file_name = reportFileName + System.currentTimeMillis() + "cam";
                             Log.e("file _name", file_name);
                             outputFileUri = Uri.fromFile(getFile(file_name));
 
                             imgPath = destination.getAbsolutePath();
                             image_info = new ArrayList<>();
+                            image_info_crop = new ArrayList<>();
                             intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
                             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
                             StrictMode.setVmPolicy(builder.build());
                             startActivityForResult(intent, 1);
+
+                            outPutFileImageNameList.clear();
+                            outPutFileUrilList.clear();
                         }
 
                     } catch (Exception e) {
@@ -331,7 +360,9 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
 //                }
 //            });
             patientTest.getallPatientTest(mSubTestDetails, getArguments().getString("patient_id"));
-            adapter.notifyDataSetChanged();
+            //adapter.notifyDataSetChanged();
+            adapter = new PatientTestListAdapter(PatientPreview.this.getContext(), mSubTestDetails, PatientPreview.this);
+            recyclerView_test_list.setAdapter(adapter);
             testName = "";
             testResult = "";
             reportFileName = "";
@@ -364,6 +395,29 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
 //        }
     }
 
+    public static void processItem(Runnable callback) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            new Thread(callback).start();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private final void launchImageCrop(Uri uri) {
+
+        file_name_crop = reportFileName + System.currentTimeMillis() + "cam";
+        Log.e("file crop launch", file_name_crop);
+        //  outputFileUri = Uri.fromFile(getFile(file_name_crop));
+
+        //imgPath = destination.getAbsolutePath();
+        // image_info = new ArrayList<>();
+        CropImage.activity(uri).setGuidelines(CropImageView.Guidelines.ON).
+                //setAspectRatio(1920, 1080).
+                // setAspectRatio(1920, 2280).
+                        setOutputUri(outputFileUri).
+                setCropShape(CropImageView.CropShape.RECTANGLE).start(Objects.requireNonNull(getActivity()));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onResultPictureDate(int requestCode, int resultCode, Intent data) {
         Log.e("request code ", requestCode + " code");
 
@@ -371,9 +425,8 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
             if (data == null) {
                 launchFromGallary = false;
                 cropStatus = false;
-                        return;
+                return;
             }
-
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == Activity.RESULT_OK) {
                 //  Intrinsics.checkExpressionValueIsNotNull(result, "result");
@@ -433,10 +486,10 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
             //  StoreImage(getContext(),imageUri,destination);
             if (cropStatus) {
                 if (image_info.size() > 1) {
-                 //   image_info.set(sliderSelectedPos, file_name_crop + ".jpg");
+                    //   image_info.set(sliderSelectedPos, file_name_crop + ".jpg");
                     image_info.set(sliderSelectedPos, outPutFileImageNameList.get(sliderSelectedPos) + ".jpg");
                 } else {
-                   // image_info_crop.clear();
+                    // image_info_crop.clear();
                     //image_info_crop.add(file_name_crop + ".jpg");
                     //Collections.copy(image_info, image_info_crop);
                 }
@@ -447,81 +500,75 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
                         intent.putExtra("uri",image_info.get(0));
                         startActivity(intent);*/
 
-                        dialog = new Dialog(getContext(), android.R.style.Theme_NoTitleBar_Fullscreen);
-                        dialog.setContentView(R.layout.rapid_image_camera_dialog);
-                        slider = dialog.findViewById(R.id.banner_slider1);
-                        Slider.init(new ImageLodingService(getContext()));
-                        slider.setAdapter(new SliderAddapterc(getContext(), image_info));
-                        dialog.show();
-                        tv_add = dialog.findViewById(R.id.tv_add);
-                        tv_done = dialog.findViewById(R.id.tv_done);
-                        tv_Edit=dialog.findViewById(R.id.tv_Edit);
-                        tv_add.setOnClickListener(this);
-                        tv_done.setOnClickListener(this);
-                        tv_Edit.setOnClickListener(this);
+                dialog = new Dialog(getContext(), android.R.style.Theme_NoTitleBar_Fullscreen);
+                dialog.setContentView(R.layout.rapid_image_camera_dialog);
+                slider = dialog.findViewById(R.id.banner_slider1);
+                Slider.init(new ImageLodingService(getContext()));
+                slider.setAdapter(new SliderAddapterc(getContext(), image_info));
+                dialog.show();
+                tv_add = dialog.findViewById(R.id.tv_add);
+                tv_done = dialog.findViewById(R.id.tv_done);
+                tv_Edit = dialog.findViewById(R.id.tv_Edit);
+                tv_add.setOnClickListener(this);
+                tv_done.setOnClickListener(this);
+                tv_Edit.setOnClickListener(this);
 
-                    } else {
-                        Slider.init(new ImageLodingService(getContext()));
-                        slider.setAdapter(new SliderAddapterc(getContext(), image_info));
-                    }
-                    // Log.e("the bitmp", bitmap.toString() + " da" + imgPath);
-                } catch (Exception e) {
-                    Log.e("exception e", e.getLocalizedMessage() + " mes");
-
-                }
             } else {
-                Log.e("path not found", "p");
-                imgPath = null;
-                bitmap = null;
+                Slider.init(new ImageLodingService(getContext()));
+                slider.setAdapter(new SliderAddapterc(getContext(), image_info));
+
 
             }
-        } else {
-            try {
-                if (resultCode == Activity.RESULT_OK) {
-                    ArrayList<String> imageNames = new ArrayList<>();
-                    if (data.getClipData() != null) {
-                        int count = data.getClipData().getItemCount();
-                        Log.e("conte data ", count + " no");//evaluate the count before the for loop --- otherwise, the count is evaluated every loop.
-                        for (int i = 0; i < count; i++) {
-                            imageUri = data.getClipData().getItemAt(i).getUri();
-                            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-                            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-                            // desination = new File(getRealPathFromURI(imageUri).toString());
-                            destination = new File(imageUri.getPath());
-                            //Log.e("name",destination.getAbsolutePath()+" and name"+destination.getName()+" and "+bitmap );
-                            imgPath = createDirectoryAndSaveFile(bitmap, reportFileName + i).getAbsolutePath();
-                            imageNames.add(destination.getName());
-                            Log.e("gvefwjhk", "kjbh,jhfsfd" + imageUri + " and " + bitmap + "name " + destination.getName());
-                        }
-                        String image_details = new Gson().toJson(imageNames);
-                        Log.e("data ", image_details + " d");
-                        onCaptureImage(image_details);
-                        //do something with the image (save it to some directory or whatever you need to do with it here)
-                    } else if (data.getData() != null) {
-                        Log.e("data null", "data");
-                        String imagePath = data.getData().getPath();
-                        imageUri = data.getData();
-                        bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-                        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            outPutFileUrilList.add(outputFileUri);
+            outPutFileImageNameList.add(file_name);
+            // Log.e("the bitmp", bitmap.toString() + " da" + imgPath);
+        } catch (Exception e) {
+            Log.e("exception e", e.getLocalizedMessage() + " mes");
 
-                        // destination = new File(getRealPathFromURI(imageUri).toString());
-                        destination = new File(imageUri.getPath());
-                        //Log.e("name",destination.getAbsolutePath()+" and name"+destination.getName()+" and "+bitmap );
-                        imgPath = createDirectoryAndSaveFile(bitmap, reportFileName).getAbsolutePath();
+        }
+    }
 
-                        imageNames.add(destination.getName());
-                        String image_details = new Gson().toJson(imageNames);
-                        Log.e("data ", image_details + " d");
-                        onCaptureImage(image_details);
-                        //do something with the image (save it to some directory or whatever you need to do with it here)
+    private final void setImage(Uri uri, Intent data) throws IOException {
 
-                    }
-                }
-            } catch (Exception e) {
-                Log.e("exception e", "e1");
+        ArrayList<String> imageNames = new ArrayList<>();
+        if (data.getClipData() != null) {
+            int count = data.getClipData().getItemCount();
+            Log.e("conte data ", count + " no");//evaluate the count before the for loop --- otherwise, the count is evaluated every loop.
+            for (int i = 0; i < count; i++) {
+                imageUri = data.getClipData().getItemAt(i).getUri();
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                // desination = new File(getRealPathFromURI(imageUri).toString());
+                destination = new File(imageUri.getPath());
+                //Log.e("name",destination.getAbsolutePath()+" and name"+destination.getName()+" and "+bitmap );
+                imgPath = createDirectoryAndSaveFile(bitmap, reportFileName + i).getAbsolutePath();
+                imageNames.add(destination.getName());
+                Log.e("gvefwjhk", "kjbh,jhfsfd" + imageUri + " and " + bitmap + "name " + destination.getName());
             }
+            String image_details = new Gson().toJson(imageNames);
+            Log.e("data ", image_details + " d");
+            onCaptureImage(image_details);
+            //do something with the image (save it to some directory or whatever you need to do with it here)
+        } else if (uri != null) {
+            Log.e("data null", "data");
+            //   String imagePath = data.getData().getPath();
+            imageUri = uri;  // data.getData();
+            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+
+            // destination = new File(getRealPathFromURI(imageUri).toString());
+            destination = new File(imageUri.getPath());
+            //Log.e("name",destination.getAbsolutePath()+" and name"+destination.getName()+" and "+bitmap );
+            imgPath = createDirectoryAndSaveFile(bitmap, reportFileName).getAbsolutePath();
+
+            imageNames.add(destination.getName());
+            String image_details = new Gson().toJson(imageNames);
+            Log.e("data ", image_details + " d");
+            onCaptureImage(image_details);
+            //do something with the image (save it to some directory or whatever you need to do with it here)
+
         }
 
     }
@@ -560,7 +607,7 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
           /* Intent intent=new Intent(getContext(),ImageEditer.class);
             intent.putExtra("uri",imagePath);
             startActivity(intent);*/
-           TablePatientTest patientTest = new TablePatientTest(getActivity());
+            TablePatientTest patientTest = new TablePatientTest(getActivity());
             patientTest.addTestResultByName(getArguments().getString("patient_id"), testName, testResult, imagePath);
             Log.e("image name", reportFileName);
             mSubTestDetails.clear();
@@ -574,6 +621,7 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tv_add) {
@@ -596,21 +644,29 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
             image_info = null;
 
 
-        } else if(v.getId()==R.id.tv_Edit)
-        {
+        } else if (v.getId() == R.id.tv_Edit) {
             try {
-
+/*
                 UCrop.of(Uri.parse(image_info.get(0)), Uri.parse(imgPath))
                         .withAspectRatio(16, 9)
                         .withMaxResultSize(400, 600)
-                        .start(PatientPreview.this.getContext(),PatientPreview.this);
-            }catch (Exception e)
-            {
-                e.printStackTrace();
+                        .start(PatientPreview.this.getContext(),PatientPreview.this);*/
+                if (image_info.size() > 1) {
+                    sliderSelectedPos = slider.selectedSlidePosition;
+                    Log.i("SELct Slider pos value=", String.valueOf(image_info.get(slider.selectedSlidePosition)));
+                    //outputFileUri = image_info.get(String.valueOf(slider.selectedSlidePosition));
+                    // String path = "/storage/emulated/0/rapid/" + image_info.get(slider.selectedSlidePosition);
+                    outputFileUri = outPutFileUrilList.get(sliderSelectedPos);
+                    // launchImageCrop(outputFileUri);
+                }
+                // oldOutputFileUri = outputFileUri;
+                //Uri preOutputURI; //= outputFileUri;
+                // preOutputURI= Uri.fromFile(getFile(image_info.get(slider.selectedSlidePosition).replace(".jpg","")));
+                launchImageCrop(outputFileUri);
+            } catch (Exception e) {
+                // e.printStackTrace();
             }
-        }
-
-        else {
+        } else {
             pd = new ProgressDialog(PatientPreview.this.getActivity());
             pd.setMessage("loading");
             pd.setCancelable(false);
@@ -767,17 +823,17 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
                         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
                         Log.e("Activity", "Pick from Gallery::>>> ");
-                        destination = new File(getRealPathFromURI(imageUri).toString());
+                        destination = new File(getRealPathFromURI(imageUri));
                         imgPath = createDirectoryAndSaveFile(bitmap, destination.getName()).getAbsolutePath();
                         ImageName imageName = new ImageName();
-                        imageName.setName(destination.getName().toString());
+                        imageName.setName(destination.getName());
                         //  imageName.setPath(imgPath.toString());
                         imageNames.add(imageName);
 
                     }
 
-                    Intent intent=new Intent(PatientPreview.this.getActivity(), ImageEditer.class);
-                    intent.putExtra("",imageUri);
+                    Intent intent = new Intent(PatientPreview.this.getActivity(), ImageEditer.class);
+                    intent.putExtra("", imageUri);
                     startActivity(intent);
                     String image_details = new Gson().toJson(imageNames);
                     onCaptureImage(image_details);
@@ -835,8 +891,9 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
         return Uri.parse(path);
     }
 
-    public File getFile(String file_name) {
+    public File getFile(final String file_name) {
         this.file_name = file_name;
+
         File direct = new File(Environment.getExternalStorageDirectory() + "/" + "rapid");
 
         if (!direct.exists()) {
@@ -847,6 +904,7 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
         if (destination.exists()) {
             destination.delete();
         }
+
         return destination;
     }
 
@@ -888,7 +946,7 @@ public class PatientPreview extends BaseFragment implements RecyclerViewListener
         int currentAPIVersion = Build.VERSION.SDK_INT;
         if (currentAPIVersion >= android.os.Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) getActivity(), Manifest.permission.CAMERA) && ActivityCompat.shouldShowRequestPermissionRationale((Activity) getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) && ActivityCompat.shouldShowRequestPermissionRationale((Activity) getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CAMERA) && ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) && ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
                     android.app.AlertDialog.Builder alertBuilder = new android.app.AlertDialog.Builder(getContext());
                     alertBuilder.setCancelable(true);

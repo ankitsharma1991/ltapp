@@ -69,7 +69,7 @@ public class ApiConstant {
 // public static final String BASE_URL = "http://qc.eaccuster.com/aws/v1/";
 // public static final String BASE_URL1="http://qc.eaccuster.com/api/v1/";
  public static final String BASE_URL = "http://qc.eaccuster.com/aws/v1/";
- public static final String BASE_URL1="http://qc.eaccuster.com/api/v2/";
+   public static final String BASE_URL1="http://qc.eaccuster.com/api/v2/";
  //public static final String BASE_URL = "http://rentpe.com/app/v1/";
 //public  static  final  String BASE_URL1="http://rentpe.com/accuster/api/v1/";
     public static final String SUCCESS = "1";
