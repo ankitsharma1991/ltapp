@@ -13,8 +13,10 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.SyncStateContract;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.text.Html;
 import android.text.Layout;
@@ -71,6 +73,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by pbadmin on 8/12/17.
@@ -113,6 +116,7 @@ public class PdfGenerator extends  PdfPageEventHelper {
     public PdfGenerator(Context context) {
         mContext = context;
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void generatePDF(RegisterPatient registerPatients) {
         float height, width;
 
@@ -279,13 +283,15 @@ public class PdfGenerator extends  PdfPageEventHelper {
             // ArrayList<SubTestDetails> subtest=new ArrayList<>();
             for (SubTestDetails list : mSubTestDetails1) {
                 // subtest.add(list) ;
+                if (list.getTest_type_name()!=null)
                 map.put(list.getTest_type_name(), list);
 
             }
 
             ArrayList<SubTestDetails> subtest = new ArrayList<>();
             for (SubTestDetails list : mSubTestDetails1) {
-                if (!list.getTest_precautions().equals("")) {
+                if (list.getTest_precautions()!=null ){
+                    if (!list.getTest_precautions().equals(""))
                     subtest.add(list);
                     //  map.put(list.getTest_name(),list);
                 }
@@ -396,7 +402,7 @@ public class PdfGenerator extends  PdfPageEventHelper {
             document.close();
         } catch (Exception e) {
             // Log.e("exce", e.getMessage());
-            e.printStackTrace();
+           // e.printStackTrace();
             // ToastUtils.showShortToastMessage(mContext, e.toString());
         }
 

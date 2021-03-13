@@ -56,8 +56,8 @@ public class Tab1 extends BaseFragment implements View.OnClickListener, AdapterV
     ArrayAdapter<String> adapter;
     ArrayList<String> names = new ArrayList<>();
     ArrayList<QcData> list;
-    ArrayList<QcData >filter_list;
-    ArrayList<QCDetail> qcDetailArrayList,filterlist;
+    ArrayList<QcData> filter_list;
+    ArrayList<QCDetail> qcDetailArrayList, filterlist;
     CustomLablledSpinner camp_selector;
     RecyclerView qcData_rv;
     QcDataList qcDataList;
@@ -68,7 +68,7 @@ public class Tab1 extends BaseFragment implements View.OnClickListener, AdapterV
     TableCamp tableCamp;
     String campCode = "", campName = "";
     SwipeRefreshLayout swipeRefreshLayout;
-    boolean userintrection =false;
+    boolean userintrection = false;
 
     @Nullable
     @Override
@@ -83,43 +83,44 @@ public class Tab1 extends BaseFragment implements View.OnClickListener, AdapterV
         camp_selector.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                userintrection=true;
+                userintrection = true;
                 return false;
             }
         });
-swipeRefreshLayout=view.findViewById(R.id.l_swipe);
-swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-    @Override
-    public void onRefresh() {
-        list=new ArrayList<>();
-        qcdata=new TableQcData(getActivity());
-        qcdata.getQcdataList(list);
-        qcDataList=new QcDataList();
-        qcDataList.setList(list);
-        qcDataList.setLtid(AppPreference.getString(getContext(), AppPreference.USER_ID));
-        qcData_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        qcdataAdapter=new QcdataAdapter(getContext(),list,campDetails);
-        qcData_rv.setAdapter(qcdataAdapter);
+        swipeRefreshLayout = view.findViewById(R.id.l_swipe);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                list = new ArrayList<>();
+                qcdata = new TableQcData(getActivity());
+                qcdata.getQcdataList(list);
+                qcDataList = new QcDataList();
+                qcDataList.setList(list);
+                qcDataList.setLtid(AppPreference.getString(getContext(), AppPreference.USER_ID));
+                qcData_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+                qcdataAdapter = new QcdataAdapter(getContext(), list, campDetails);
+                qcData_rv.setAdapter(qcdataAdapter);
 
-        swipeRefreshLayout.setRefreshing(false);
-    }
-});
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         qcData_rv = view.findViewById(R.id.qcData_rv);
         campDetails = new ArrayList<>();
         camps_list = new ArrayList<CampList>();
         setupRecycler(tableCamp.getCampList(campDetails));
-        list=new ArrayList<>();
-        qcdata=new TableQcData(this.getActivity());
+        list = new ArrayList<>();
+        qcdata = new TableQcData(this.getActivity());
         qcdata.getQcdataList(list);
-        qcDataList=new QcDataList();
+        qcDataList = new QcDataList();
+
         qcDataList.setList(list);
         qcDataList.setLtid(AppPreference.getString(this.getContext(), AppPreference.USER_ID));
-        Gson g=new Gson();
-        com.android.volley.RequestQueue queue= Volley.newRequestQueue(this.getContext());
+        Gson g = new Gson();
+        com.android.volley.RequestQueue queue = Volley.newRequestQueue(this.getContext());
         try {
 
             JSONObject ob = new JSONObject(g.toJson(qcDataList));
-            JsonObjectRequest request = new JsonObjectRequest(ApiConstant.BASE_URL1+ApiConstant.ADD_QC_DATA, ob,
+            JsonObjectRequest request = new JsonObjectRequest(ApiConstant.BASE_URL1 + ApiConstant.ADD_QC_DATA, ob,
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -139,27 +140,24 @@ swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener
                     2,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             queue.add(request);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
-        Log.e("gson data",g.toJson(qcDataList));
+        Log.e("gson data", g.toJson(qcDataList));
         qcData_rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        qcdataAdapter=new QcdataAdapter(this.getContext(),list,campDetails);
+        qcdataAdapter = new QcdataAdapter(this.getContext(), list, campDetails);
         qcData_rv.setAdapter(qcdataAdapter);
 
 //        Log.e("lt_id",lt_id);
-        if(list==null||list.isEmpty()){
+        if (list == null || list.isEmpty()) {
 
-        }
-            else{
-                //retrofitJSONParsing();
+        } else {
+            //retrofitJSONParsing();
             qcData_rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
             qcdataAdapter = new QcdataAdapter(this.getContext(), list, campDetails);
             qcData_rv.setAdapter(qcdataAdapter);
             qcdataAdapter.notifyDataSetChanged();
-            }
+        }
 
         return view;
 
@@ -170,7 +168,7 @@ swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener
                 android.R.layout.simple_spinner_dropdown_item, campList);
         campListAdapter.setShowDefaultText(false);
         camp_selector.setAdapter(campListAdapter);
-      //  camp_selector.setSelection(AppPreference.getInt(getActivity(), AppPreference.CAMP_POSITION));
+        //  camp_selector.setSelection(AppPreference.getInt(getActivity(), AppPreference.CAMP_POSITION));
 
     }
 
@@ -225,34 +223,31 @@ swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener
 
     @Override
     public void onItemSelection(Spinner spinnerView, int position) {
-    if (userintrection)
-    {
-        filter_list=new ArrayList<>();
+        if (userintrection) {
+            filter_list = new ArrayList<>();
 
-                if (position > 0) {
-                    Log.e("Selected Position", position + " ");
-                    campCode = campDetails.get(position).getCamp_code();
-                    campName = campDetails.get(position).getCampName();
+            if (position > 0) {
+                Log.e("Selected Position", position + " ");
+                campCode = campDetails.get(position).getCamp_code();
+                campName = campDetails.get(position).getCampName();
 
-                    for (int i = 0; i < list.size(); i++) {
-                        Log.e(" name"+campName,list.get(i).getCamp_name());
-                        //AppPreference.setInt(getActivity(), AppPreference.CAMP_POSITION, position);
-                        if (campName.equals(list.get(i).getCamp_name())) {
+                for (int i = 0; i < list.size(); i++) {
+                    Log.e(" name" + campName, list.get(i).getCamp_name());
+                    //AppPreference.setInt(getActivity(), AppPreference.CAMP_POSITION, position);
+                    if (campName.equals(list.get(i).getCamp_name())) {
 
-                            filter_list.add(new QcData(list.get(i).getTest_id(),list.get(i).getC1(),list.get(i).getC2(),list.get(i).getLab_id(),list.get(i).getCamp_name(),list.get(i).getQc_status(),list.get(i).getDate(),list.get(i).getTime(),list.get(i).getStatus(),list.get(i).getC3(),list.get(i).getL1(),list.get(i).getL2()));
+                        filter_list.add(new QcData(list.get(i).getTest_id(), list.get(i).getC1(), list.get(i).getC2(), list.get(i).getLab_id(), list.get(i).getCamp_name(), list.get(i).getQc_status(), list.get(i).getDate(), list.get(i).getTime(), list.get(i).getStatus(), list.get(i).getC3(), list.get(i).getL1(), list.get(i).getL2()));
 
-                        }
+                    }
                 }
-                    qcData_rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-                    qcdataAdapter = new QcdataAdapter(this.getContext(), filter_list, campDetails);
-                    qcData_rv.setAdapter(qcdataAdapter);
-                    qcdataAdapter.notifyDataSetChanged();
-                    Log.e("data", String.valueOf(list.size()) + list + "");
+                qcData_rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+                qcdataAdapter = new QcdataAdapter(this.getContext(), filter_list, campDetails);
+                qcData_rv.setAdapter(qcdataAdapter);
+                qcdataAdapter.notifyDataSetChanged();
+                Log.e("data", String.valueOf(list.size()) + list + "");
             }
+        }
     }
-            }
-
-
 
 
 }

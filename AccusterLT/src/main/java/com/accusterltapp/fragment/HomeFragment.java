@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,15 +22,29 @@ import com.accusterltapp.activity.SynDataStatus;
 import com.accusterltapp.database.AppPreference;
 import com.accusterltapp.login.LoginActivity;
 import com.accusterltapp.model.CampDetails1;
+import com.accusterltapp.model.CampList1;
 import com.accusterltapp.model.Heleprec;
+import com.accusterltapp.service.ApiConstant;
+import com.accusterltapp.service.NetworkUtil;
 import com.accusterltapp.table.TableCamp;
 import com.accusterltapp.table.TablePackageList;
 import com.accusterltapp.table.TablePatient;
 import com.accusterltapp.table.TablePatientTest;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.base.fragment.BaseFragment;
 import com.accusterltapp.R;
+import com.base.model.CampDetails;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class HomeFragment extends BaseFragment {
@@ -37,6 +52,8 @@ public class HomeFragment extends BaseFragment {
     private ImageView imge_create_and_camp, image_register_patient,
             image_package_list, image_aboutus, image_edit_profile, image_logout;
     ArrayList<CampDetails1> list;
+    private String ltid;
+    private TableCamp tableCamp;
 
 
     @Override
@@ -51,6 +68,10 @@ public class HomeFragment extends BaseFragment {
         image_aboutus = view.findViewById(R.id.image_aboutus);
         image_edit_profile = view.findViewById(R.id.image_edit_profile);
         image_logout = view.findViewById(R.id.image_logout);
+        tableCamp = new TableCamp(getActivity());
+
+        getUpdatedCampListFromServer();
+
         imge_create_and_camp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,6 +196,64 @@ public class HomeFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
+
+    public  void getUpdatedCampListFromServer(){
+        ltid= AppPreference.getString(getActivity(), AppPreference.USER_ID);
+        HashMap<String, String> bodyMap = new HashMap<>();
+        bodyMap.put("ltId", AppPreference.getString(getActivity(), AppPreference.USER_ID));
+        if (NetworkUtil.checkInternetConnection(getActivity())) {
+            com.android.volley.RequestQueue queue = Volley.newRequestQueue(getActivity());
+            StringRequest sr = new StringRequest(Request.Method.POST, ApiConstant.BASE_URL1+"getListApiCamp", new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    // mPostCommentResponse.requestCompleted();
+                    //  System.out.print(response);
+                    Log.e("response",response);
+                    Gson gn=new Gson();
+                    CampList1 campList=gn.fromJson(response,CampList1.class);
+
+                    if (campList != null && campList.getStatus().equalsIgnoreCase(ApiConstant.SUCCESS)
+                            && campList.getCampList() != null && !campList.getCampList().isEmpty()) {
+                        ArrayList<CampDetails> campListModel = new ArrayList<>();
+                        //tableCamp.getCampList(campListModel);
+                        ArrayList<CampDetails1> list1=campList.getCampList();
+                        boolean falg=false;
+                        //tableCamp.isTableEmpty();
+                        //  setupRecycler();
+                        try {
+                            tableCamp.insertCampListFormServer1(list1);
+                        }
+                        catch (Exception e){
+
+                        }
+
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("error ",error.toString());
+                    //toString////////mPostCommentResponse.requestEndedWithError(error);
+                }
+            }){
+                @Override
+                protected Map<String,String> getParams(){
+                    Map<String,String> params = new HashMap<String, String>();
+                    //    String ap=AppPreference.USER_ID;
+                    params.put("ltId",ltid);
+
+                    return params;
+                }
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    return Collections.emptyMap();
+                }
+            };
+            queue.add(sr);
+        }
+    }
+
 }
 
 

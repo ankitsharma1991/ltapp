@@ -146,7 +146,16 @@ public class EditTestActivity extends BaseActivity implements ExpandableListView
     }
 
     public void setTotalAmount(double amount) {
-        mTextViewPrice.setText(String.format("%s %s", getString(R.string.Rs), StringUtils.doubleToIndianFormat(amount)));
+        //if (amount > 0) {
+            double totaleValeu = 0;
+            if (mTextViewPrice.getText().toString().isEmpty())
+            totaleValeu = amount;
+            else
+            totaleValeu = totaleValeu + amount;
+            mTextViewPrice.setText(String.format("%s %s", getString(R.string.Rs), StringUtils.doubleToIndianFormat(totaleValeu)));
+        //}
+        //else
+          //  Log.d("No DATA","Empty");
     }
 
     @Override
@@ -157,6 +166,7 @@ public class EditTestActivity extends BaseActivity implements ExpandableListView
                     getIntent().getStringExtra("campCode"), getIntent().getStringExtra("labelId"));
             AppPreference.setBoolean(this, AppPreference.TEST_TABLE_UPDATE, true);
         }
+
         finish();
 
     }

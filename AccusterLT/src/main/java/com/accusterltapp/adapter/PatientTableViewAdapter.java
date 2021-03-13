@@ -70,7 +70,7 @@ PatientTableViewAdapter extends RecyclerView.Adapter<PatientTableViewAdapter.Car
         holder.p_totalcost.setText("\u20B9 "+ StringUtils.indianFormat(mPatient.getTotalTestCost(patient.getUserregistration_code())));
 
        try {
-   //holder.pStatus.setText(mPatient.getReportStatus(patient.getUserregistration_Id_no()) ? "Success" : "Pending");
+          holder.pStatus.setText(mPatient.getReportStatus(patient.getUserregistration_Id_no()) ? "Success" : "Pending");
        }
        catch (Exception e)
        {

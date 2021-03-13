@@ -417,7 +417,7 @@ public class PatientRegistrationFragment extends BaseFragment implements View.On
                 }
                 selectedPatient.setUserregistration_Lt_id(AppPreference.getString(getActivity(), AppPreference.USER_ID));
 
-                //  mPatient.upadteSinglePatient(selectedPatient);
+                  mPatient.upadteSinglePatient(selectedPatient);
                 TablePatientTest patientTest = new TablePatientTest(getActivity());
                 TablePackageTestDetail packageList = new TablePackageTestDetail(getActivity());
                 ArrayList<SubTestDetails> subTestDetails = new ArrayList<>();
@@ -425,6 +425,7 @@ public class PatientRegistrationFragment extends BaseFragment implements View.On
 
                 patientTest.insertSinglePatient(packageList.getAllSubTestList(subTestDetails, packageName), selectedPatient.getUserregistration_code(), selectedPatient.getUserregistration_camp_code(),
                         selectedPatient.getpLabelId());
+
 
                 setPatientId();
                 Refreshpage();

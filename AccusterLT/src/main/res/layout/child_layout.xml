@@ -4,6 +4,7 @@
     android:layout_height="45dp"
     android:weightSum="1"
     android:gravity="center_vertical"
+    android:id="@+id/childItemContainer"
     android:orientation="horizontal" >
 
     <TextView

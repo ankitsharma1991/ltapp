@@ -73,7 +73,7 @@ public class QCStatusAdapter extends  RecyclerView.Adapter<QCStatusAdapter.ViewH
 
         }
 
-        if (list.get(position).getQc_status()==1)
+        if (list.get(position).getQc_status()==0)
         {
             holder.imageView.setImageResource(R.drawable.letter_a);
         }
@@ -81,7 +81,7 @@ public class QCStatusAdapter extends  RecyclerView.Adapter<QCStatusAdapter.ViewH
         {
             holder.imageView.setImageResource(R.drawable.r);
         }
-        else if (list.get(position).getQc_status()==0)
+        else if (list.get(position).getQc_status()==1)
         {
             holder.imageView.setImageResource(R.drawable.letter_p);
         }

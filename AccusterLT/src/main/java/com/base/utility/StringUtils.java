@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 public class StringUtils {
 
+    public static  double finalTotal = 0;
     public SpannableString spannedTextFormatter(String text, StyleSpan styleSpan, int start, int end, int flag) {
         SpannableString content = new SpannableString(text);
         content.setSpan(styleSpan, start, end, flag);

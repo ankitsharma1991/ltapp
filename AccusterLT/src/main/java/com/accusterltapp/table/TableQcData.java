@@ -95,7 +95,10 @@ public class TableQcData extends BaseTable {
         values.put(C1, qcdata.getC1());
         values.put(C2,qcdata.getC2());
         //Log.e("value of c2",qcdata.getC2());
-        values.put(STATUS,qcdata.getStatus());
+
+        //Below line commented BY JS
+       // values.put(STATUS,qcdata.getStatus());
+        values.put(STATUS,1);
         values.put(C3,qcdata.getC3());
         values.put(L1,qcdata.getL1());
         values.put(L2,qcdata.getL2());
@@ -169,7 +172,7 @@ public class TableQcData extends BaseTable {
     }
 
     public ArrayList<QcData> getQcdataList(ArrayList<QcData> patientList) {
-        Cursor mcursor = makeRawQuery("SELECT *  from " + TABLE_TEST_PACKAGE);
+        Cursor mcursor = makeRawQuery("SELECT *  from " + TABLE_TEST_PACKAGE + " ORDER BY date DESC, time DESC");
         if (mcursor != null && mcursor.moveToFirst()) {
             do {
                 patientList.add(addPackageDetails(mcursor));

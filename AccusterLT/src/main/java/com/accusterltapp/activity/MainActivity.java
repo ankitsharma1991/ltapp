@@ -116,7 +116,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setContentView(R.layout.activity_main);
        TableWidalData tableWidalTest=new TableWidalData(this);
         tableCamp = new TableCamp(this);
-        getUpdatedCampListFromServer();
         Log.e("the widal",tableWidalTest.mDbObject+"data");
         Toolbar mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -533,6 +532,53 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                                                 //  mBufferTestResponse=new StringBuffer();
 
                                             }
+                                            // BY JS
+                                            else if (result.contains("L2")&&result.indexOf("L1")<result.indexOf("L2")){
+
+                                                Log.e("current result is",result);
+                                                // Log.e("qcdata ","L2");
+                                                mBufferTestResponse.delete(0, mBufferTestResponse.length());
+                                                String testName, l2, LabId;
+                                                String parts[] = result.split(",");
+                                                if (parts[0].trim().equalsIgnoreCase("Ure(BUN)")) {
+                                                    testName = "Ure";
+                                                    //testUnit = parts[1].trim().split("\\(")[0];
+                                                    l2 = parts[2].trim().split("\\(")[0];
+                                                } else if (parts[0].trim().equalsIgnoreCase("CrK(MeGFR)")) {
+                                                    testName = "CrK";
+                                                    // testUnit = parts[1].trim().split("\\(")[0];
+                                                    l2 = parts[2].trim().split("\\(")[0];
+                                                } else if (parts[0].trim().contains("ACCUSTER")) {
+                                                    testName = parts[0].trim().split("ACCUSTER[\n\r]*")[1];
+                                                    //testUnit = parts[1].trim();
+                                                    l2 = parts[2].trim();
+                                                } else {
+                                                    testName = parts[0].trim();
+                                                    // testUnit = parts[1].trim();
+                                                    l2 = parts[2].trim();
+                                                }
+                                                LabId = parts[4].trim();
+
+                                                qcdata.setL2(l2);
+                                                Calendar cal=Calendar.getInstance();
+                                                SimpleDateFormat format=new SimpleDateFormat("HH:mm:ss");
+                                                format.format(cal.getTime());
+                                                qcdata.setTest_id(testName);
+                                                // Log.e("test name ",testName);
+                                                qcdata.setLab_id(LabId);
+                                                qcdata.setTime(format.format(cal.getTime()));
+                                                qcDatainfo("L2",l2);
+                                                qcdata.setDate(DateTimeUtils.getCurrentDate(DateTimeUtils.OUTPUT_DATE_YYYYMMdd));
+                                                TableQcData table=new TableQcData(MainActivity.this.getBaseContext());
+                                                // qcdata.setLtid(AppPreference.getString(MainActivity.this,AppPreference.USER_ID));
+                                                // Log.e("all data",qcdata.getC1()+"  "+qcdata.getC2()+"  "+qcdata.getC3()+"  "+qcdata.getL1()+"  "+qcdata.getL2());
+                                                table.insertQcDataofL(qcdata);
+                                                qcDatainfo("L2",l2);
+                                                Heleprec.isc3=false;
+                                                isc1=false;
+                                                //  mBufferTestResponse=new StringBuffer();
+
+                                            }
                                             else {
                                                 Log.e("qcdata "," not qcdata");
 
@@ -850,7 +896,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         qcdata.setL2(g[3].trim());
         Log.e("l2",qcdata.getL2());
         TableQcData table=new TableQcData(MainActivity.this);
-        qcdata.setStatus("0");
+       // qcdata.setStatus("0");
+        qcdata.setStatus("1");
         //qcdata.setLtid(AppPreference.getString(this,AppPreference.USER_ID));
         table.insertQcData(qcdata);
         TableQcData data=new TableQcData(MainActivity.this);
@@ -905,54 +952,4 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Log.e("on resume call","onresume");
     }
 
-    public  void getUpdatedCampListFromServer(){
-        ltid= AppPreference.getString(this, AppPreference.USER_ID);
-        HashMap<String, String> bodyMap = new HashMap<>();
-        bodyMap.put("ltId", AppPreference.getString(this, AppPreference.USER_ID));
-        if (NetworkUtil.checkInternetConnection(this)) {
-            com.android.volley.RequestQueue queue = Volley.newRequestQueue(this);
-            StringRequest sr = new StringRequest(Request.Method.POST, ApiConstant.BASE_URL1+"getListApiCamp", new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    // mPostCommentResponse.requestCompleted();
-                    //  System.out.print(response);
-                    Log.e("response",response);
-                    Gson gn=new Gson();
-                    CampList1 campList=gn.fromJson(response,CampList1.class);
-
-                    if (campList != null && campList.getStatus().equalsIgnoreCase(ApiConstant.SUCCESS)
-                            && campList.getCampList() != null && !campList.getCampList().isEmpty()) {
-                        ArrayList<CampDetails> campListModel = new ArrayList<>();
-                        //tableCamp.getCampList(campListModel);
-                        ArrayList<CampDetails1> list1=campList.getCampList();
-                        boolean falg=false;
-                        //tableCamp.isTableEmpty();
-                        //  setupRecycler();
-                       // tableCamp.insertCampListFormServer1(list1);
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d("error ",error.toString());
-                    //toString////////mPostCommentResponse.requestEndedWithError(error);
-                }
-            }){
-                @Override
-                protected Map<String,String> getParams(){
-                    Map<String,String> params = new HashMap<String, String>();
-                    //    String ap=AppPreference.USER_ID;
-                    params.put("ltId",ltid);
-
-                    return params;
-                }
-
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    return Collections.emptyMap();
-                }
-            };
-            queue.add(sr);
-        }
-    }
 }

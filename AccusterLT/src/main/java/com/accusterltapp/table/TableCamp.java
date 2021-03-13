@@ -90,7 +90,11 @@ public class TableCamp extends BaseTable {
         details.setCamp_organization_id(mcursor.getString(mcursor.getColumnIndex(ORAGANIZATION_ID)));
         return details;
     }
-
+    private CampDetails addCampToListForZeroPos() {
+        CampDetails details = new CampDetails();
+        details.setCampName("Select Camp");
+        return details;
+    }
     private ContentValues getContentValues(CampDetails campDetails) {
         ContentValues values = new ContentValues();
         values.put(CAMP_NAME, campDetails.getCampName());
@@ -206,6 +210,18 @@ public class TableCamp extends BaseTable {
 
     public ArrayList<CampDetails> getCampList(ArrayList<CampDetails> patientList) {
         Cursor mcursor = makeRawQuery("SELECT *  from " + TABLE_CAMP);
+        if (mcursor != null && mcursor.moveToFirst()) {
+            do {
+
+                patientList.add(addCampToList(mcursor));
+            } while (mcursor.moveToNext());
+        }
+        return patientList;
+    }
+
+    public ArrayList<CampDetails> getCampListWithSelectCampTitle(ArrayList<CampDetails> patientList) {
+        Cursor mcursor = makeRawQuery("SELECT *  from " + TABLE_CAMP);
+        patientList.add(0,addCampToListForZeroPos());
         if (mcursor != null && mcursor.moveToFirst()) {
             do {
                 patientList.add(addCampToList(mcursor));

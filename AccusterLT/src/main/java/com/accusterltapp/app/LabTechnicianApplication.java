@@ -4,6 +4,7 @@ package com.accusterltapp.app;
  * Created by appideas-user2 on 17/7/17.
  */
 
+import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
@@ -14,6 +15,7 @@ import androidx.work.WorkManager;
 import com.accusterltapp.service.Controller;
 import com.base.utility.SuncDataWorkManager;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class LabTechnicianApplication extends MultiDexApplication {
@@ -22,6 +24,8 @@ public class LabTechnicianApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        deleteCache(this);
         PeriodicWorkRequest refreshWork =
                 new PeriodicWorkRequest.Builder(SuncDataWorkManager.class, 1, TimeUnit.HOURS)
                         .addTag("SyncDataWorkManager")
@@ -38,5 +42,25 @@ public class LabTechnicianApplication extends MultiDexApplication {
         }
         return controller;
     }
-
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) {}
+    }public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
+    }
 }

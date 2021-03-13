@@ -113,6 +113,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
         patientDOB = registerPatients.getUserregistration_age();
         patientAddress = registerPatients.getUserregistration_address_line_1();
         patientEmail = registerPatients.getUserregistration_email_address();
+        Log.d("AGE JS=",patientDOB);
 
         try {
 
