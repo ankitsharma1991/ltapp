@@ -594,7 +594,7 @@ public class ApprovedReportFragment extends BaseFragment implements RecyclerView
         TablePatientTest patientTest = new TablePatientTest(getActivity());
         TablePackageTestDetail packageList = new TablePackageTestDetail(getActivity());
         ArrayList<SubTestDetails> subTestDetails = new ArrayList<>();
-
+        //Log.d("TEST DETAILS RETEST=",clist.getTest_details().get(0).getTest_head());
 
         for (int i = 0; i < clist.getTest_details().size(); i++) {
             if (StatusAdapter.testId.contains(clist.getTest_details().get(i).getTest_id())) {
@@ -605,6 +605,10 @@ public class ApprovedReportFragment extends BaseFragment implements RecyclerView
                 subTestDetails1.setTest_code(clist.getTest_details().get(i).getTest_code());
                 subTestDetails1.setTest_id(clist.getTest_details().get(i).getTest_id());
                 subTestDetails1.setTest_name(clist.getTest_details().get(i).getTest_name());
+                subTestDetails1.setTest_type_name(clist.getTest_details().get(i).getTest_head());
+                subTestDetails1.setPackageName(clist.getTest_details().get(i).getTest_head());
+                subTestDetails1.setTest_interpretation(clist.getTest_details().get(i).getTest_interpretation());
+                subTestDetails1.setTest_precautions(clist.getTest_details().get(i).getTest_precautions());
                 subTestDetails1.setTest_price(clist.getTest_details().get(i).getTest_price());
                 subTestDetails1.setTest_manual_status(1);
                 subTestDetails.add(subTestDetails1);

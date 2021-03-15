@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,18 +7,18 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:paddingBottom="100dp"
+        android:layout_height="wrap_content"
         android:clipToPadding="false"
-        android:isScrollContainer="false">
+        android:fillViewport="true"
+        android:isScrollContainer="false"
+        android:paddingBottom="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="@dimen/height4"
+            android:layout_marginRight="10dp"
             android:orientation="vertical">
 
 
@@ -35,13 +35,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
+                android:enabled="false"
                 android:hint="Organization Name Here"
                 android:inputType="textCapSentences|textAutoCorrect"
                 android:maxLines="1"
-                android:enabled="false"
-                android:paddingBottom="10dp"
-                android:paddingRight="5dp"
                 android:paddingTop="6dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="10dp"
                 android:singleLine="true"
                 android:textColor="@color/textcolor1"
                 android:textColorHint="@color/hintscolor"
@@ -71,9 +71,9 @@
                 android:hint="@string/create_a_camp_camp_name_here"
                 android:inputType="textCapSentences|textAutoCorrect"
                 android:maxLines="1"
-                android:paddingBottom="10dp"
-                android:paddingRight="5dp"
                 android:paddingTop="6dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="10dp"
                 android:singleLine="true"
                 android:textColor="@color/textcolor1"
                 android:textColorHint="@color/hintscolor"
@@ -104,9 +104,9 @@
                 android:hint="@string/create_a_camp_camp_description_here"
                 android:inputType="textCapSentences|textAutoCorrect"
                 android:maxLines="1"
-                android:paddingBottom="10dp"
-                android:paddingRight="5dp"
                 android:paddingTop="6dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="10dp"
                 android:singleLine="true"
                 android:textColor="@color/textcolor1"
                 android:textColorHint="@color/hintscolor"
@@ -186,8 +186,8 @@
                         android:hint="@string/create_a_camp_cam_startdate1"
                         android:inputType="textCapSentences|textAutoCorrect"
                         android:maxLines="1"
-                        android:paddingRight="5dp"
                         android:paddingTop="3dp"
+                        android:paddingRight="5dp"
                         android:singleLine="true"
                         android:textColor="@color/textcolor1"
                         android:textColorHint="@color/hintscolor"
@@ -219,8 +219,8 @@
                         android:imeOptions="flagNoExtractUi"
                         android:inputType="textCapSentences|textAutoCorrect"
                         android:maxLines="1"
-                        android:paddingRight="5dp"
                         android:paddingTop="3dp"
+                        android:paddingRight="5dp"
                         android:singleLine="true"
                         android:textColor="@color/textcolor1"
                         android:textColorHint="@color/hintscolor"
@@ -306,8 +306,8 @@
                         android:hint="@string/create_a_camp_cam_starttime1"
                         android:inputType="textCapSentences|textAutoCorrect"
                         android:maxLines="1"
-                        android:paddingRight="5dp"
                         android:paddingTop="3dp"
+                        android:paddingRight="5dp"
                         android:singleLine="true"
                         android:textColor="@color/textcolor1"
                         android:textColorHint="@color/hintscolor"
@@ -339,8 +339,8 @@
                         android:imeOptions="flagNoExtractUi"
                         android:inputType="textCapSentences|textAutoCorrect"
                         android:maxLines="1"
-                        android:paddingRight="5dp"
                         android:paddingTop="3dp"
+                        android:paddingRight="5dp"
                         android:singleLine="true"
                         android:textColor="@color/textcolor1"
                         android:textColorHint="@color/hintscolor"
@@ -376,9 +376,9 @@
                 android:hint="Description"
                 android:inputType="textCapSentences|textAutoCorrect"
                 android:maxLines="1"
-                android:paddingBottom="10dp"
-                android:paddingRight="5dp"
                 android:paddingTop="6dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="10dp"
                 android:singleLine="true"
                 android:textColor="@color/textcolor"
                 android:textColorHint="@color/hintscolor"
@@ -394,8 +394,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/height4"
                 android:layout_marginTop="@dimen/margin3"
+                android:layout_marginRight="@dimen/height4"
                 android:orientation="vertical">
 
                 <custom.AvenirRomanTextView
@@ -414,25 +414,26 @@
                     android:hint="@string/create_a_camp_organisantiom_name_here"
                     android:inputType="textCapSentences|textAutoCorrect"
                     android:maxLines="1"
-                    android:paddingBottom="10dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="6dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="10dp"
                     android:singleLine="true"
                     android:textColor="@color/textcolor1"
                     android:textColorHint="@color/hintscolor"
                     android:textSize="@dimen/textsize" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/lv_add_camp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
-                android:layout_marginBottom="@dimen/height3"
                 android:layout_marginLeft="@dimen/height11"
-                android:layout_marginRight="@dimen/height11"
                 android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/height11"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/loginbutton"
                 android:gravity="center">
 
@@ -447,10 +448,11 @@
                     android:text="@string/create_a_camp_cam_continue"
                     android:textAllCaps="false"
                     android:textColor="@color/textwhite"
+
                     android:textSize="15sp" />
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-</RelativeLayout>
+</android.support.v7.widget.LinearLayoutCompat>

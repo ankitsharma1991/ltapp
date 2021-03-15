@@ -233,7 +233,11 @@ public class PdfGenerator extends  PdfPageEventHelper {
                 Log.e("s2", Heleprec.update + "");
             }
             // BY JS
-            if (campdetails.isHeader())
+            if (campdetails!=null) {
+                if (campdetails.isHeader())
+                    addHorizontal_line(document);
+            }
+            else
             addHorizontal_line(document);
 
             LineSeparator separator1 = new LineSeparator();
@@ -401,7 +405,7 @@ public class PdfGenerator extends  PdfPageEventHelper {
             Font red = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.RED);
             document.close();
         } catch (Exception e) {
-            // Log.e("exce", e.getMessage());
+             Log.e("LTTEST exce", e.getMessage());
            // e.printStackTrace();
             // ToastUtils.showShortToastMessage(mContext, e.toString());
         }
@@ -430,9 +434,9 @@ public class PdfGenerator extends  PdfPageEventHelper {
             try {
                 mContext.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                // ToastUtils.showShortToastMessage(mContext, "No Application found to open file");
+                 ToastUtils.showShortToastMessage(mContext, "No Application found to open file");
             } catch (Exception e) {
-                //ToastUtils.showShortToastMessage(mContext, mContext.getString(R.string.server_error));
+                ToastUtils.showShortToastMessage(mContext, mContext.getString(R.string.server_error));
             }
 
             // System.out.println("App is already installed on your phone");
@@ -676,7 +680,7 @@ public void addwidal_table(Document document)
         }
         catch (Exception e)
         {
-            Log.e("createid","table"+e.getMessage());
+            Log.e("LTTEST createid","table"+e.getMessage());
         }
     }
 
@@ -1382,7 +1386,8 @@ public void addwidal_table(Document document)
 
     public void addPackageName(String packageName, Document document) {
         if (packageName.contains("+"))
-        {  try {
+        {
+            try {
 
             Font f = new Font(Font.FontFamily.TIMES_ROMAN, 14.0f, Font.BOLD, BaseColor.BLACK);
             String package_list[]=packageName.split("\\+");
@@ -1390,10 +1395,6 @@ public void addwidal_table(Document document)
             Paragraph pa_sub = new Paragraph(package_list[1], f);
             pa.setAlignment(Paragraph.ALIGN_CENTER);
             pa_sub.setAlignment(Paragraph.ALIGN_CENTER);
-
-
-
-
                 document.add(pa);
                 document.add(pa_sub);
             } catch (DocumentException e) {
@@ -1459,17 +1460,20 @@ public void addwidal_table(Document document)
             ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
 //                    Bitmap scaled = Bitmap.createScaledBitmap(bmp2, 150, 100, true);
 
-            bmp2.compress(Bitmap.CompressFormat.PNG, 100, stream2);
+            Log.d("BTM=",""+bmp2);
+            if (bmp2 != null) {
+                bmp2.compress(Bitmap.CompressFormat.PNG, 100, stream2);
 
-            Image image2 = Image.getInstance(stream2.toByteArray());
+                Image image2 = Image.getInstance(stream2.toByteArray());
 //                    image2.setAbsolutePosition(0, height - 100);
-            image2.scaleToFit(100, 100);
-            image2.scaleAbsolute(100, 100);
+                image2.scaleToFit(100, 100);
+                image2.scaleAbsolute(100, 100);
 //                    image2.setAlignment(Image.LEFT);
-            // document.add(image2);
-            // add image
-            //Image logo = Image.getInstance(HeaderFooterPageEven.class.getResource("/memorynotfound-logo.jpg"));
-            header.addCell(image2);
+                // document.add(image2);
+                // add image
+                //Image logo = Image.getInstance(HeaderFooterPageEven.class.getResource("/memorynotfound-logo.jpg"));
+                header.addCell(image2);
+            }
             // add text
             PdfPCell text = new PdfPCell();
             // text.setPaddingBottom(15);
@@ -1514,16 +1518,17 @@ public void addwidal_table(Document document)
             ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
 //                    Bitmap scaled = Bitmap.createScaledBitmap(bmp2, 150, 100, true);
 
-            bmp2.compress(Bitmap.CompressFormat.PNG, 100, stream2);
+            if (bmp2 != null) {
+                bmp2.compress(Bitmap.CompressFormat.PNG, 100, stream2);
 
-            Image image2 = Image.getInstance(stream2.toByteArray());
+                Image image2 = Image.getInstance(stream2.toByteArray());
 //                    image2.setAbsolutePosition(0, height - 100);
-            image2.scaleToFit(100, 100);
-            image2.scaleAbsolute(100, 100);
+                image2.scaleToFit(100, 100);
+                image2.scaleAbsolute(100, 100);
 //
-            //Image logo = Image.getInstance(HeaderFooterPageEven.class.getResource("/memorynotfound-logo.jpg"));
-            header.addCell(image2);
-
+                //Image logo = Image.getInstance(HeaderFooterPageEven.class.getResource("/memorynotfound-logo.jpg"));
+                header.addCell(image2);
+            }
             // add text
             PdfPCell text = new PdfPCell();
             // text.setPaddingBottom(15);
@@ -1782,7 +1787,7 @@ public void addwidal_table(Document document)
                 pdfPTable.addCell(pdfWordCell);
             }
         } catch (Exception e) {
-            //Log.e("error", e.getMessage());
+            Log.e(" LT error", e.getMessage());
         }
     }
 

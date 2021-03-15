@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class ApprovedReportTestDetails  {
     String  method;
     String  test_head;
+    String  sub_test_head;
     String  head_id;
     String   test_name;
     String  test_upper_bound_male;
@@ -62,6 +63,15 @@ public class ApprovedReportTestDetails  {
     public void setTest_head(String test_head) {
         this.test_head = test_head;
     }
+
+    public String getSubTest_head() {
+        return sub_test_head;
+    }
+
+    public void setSubTest_head(String sub_test_head) {
+        this.sub_test_head = sub_test_head;
+    }
+
 
     public String getHead_id() {
         return head_id;
