@@ -240,9 +240,9 @@ public class Tab2 extends BaseFragment implements View.OnClickListener, AdapterV
             public void onRefresh() {
                 //tatusAdapter.clear();;
                // ArrayList<CampDetails> campList = tableCamp.getCampList(campDetails);
-                status_spinner.setSelection(0);
-                if (campListAdapter != null)
-                    campList_spinner.setSelection(0);
+                //status_spinner.setSelection(0);
+                //if (campListAdapter != null)
+                    //campList_spinner.setSelection(0);
                 retrofitJSONParsing();
                 swipeRefreshLayout.setRefreshing(false);
 
@@ -264,7 +264,8 @@ public class Tab2 extends BaseFragment implements View.OnClickListener, AdapterV
                     android.R.layout.simple_spinner_dropdown_item, campList);
         campListAdapter.setShowDefaultText(false);
         campList_spinner.setAdapter(campListAdapter);
-        campList_spinner.setSelection(AppPreference.getInt(getActivity(), AppPreference.CAMP_POSITION));
+        campList_spinner.setSelection(0);
+        //campList_spinner.setSelection(AppPreference.getInt(getActivity(), AppPreference.CAMP_POSITION));
     }
 
     @Override
@@ -386,6 +387,7 @@ public class Tab2 extends BaseFragment implements View.OnClickListener, AdapterV
                         Log.e("qc list", response.body().getQcData() + " st");
                         Log.e("response ", new Gson().toJson(response.body()));
                         qcData_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+
                         qcdataAdapter = new QCStatusAdapter(getContext(), qcDetailList, campDetails);
                         qcData_rv.setAdapter(qcdataAdapter);
                         qcdataAdapter.notifyDataSetChanged();

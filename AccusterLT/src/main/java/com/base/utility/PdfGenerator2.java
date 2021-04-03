@@ -96,13 +96,15 @@ public class PdfGenerator2 extends PdfPageEventHelper {
     private String patientID, genderPos;
     private final Context mContext;
     private boolean pdfStatus, selectedReportStatus;
+    private HashMap<String,String> listTestHead;
+    private boolean precause;
     public PdfGenerator2(Context context) {
         mContext = context;
     }
     public void generatePDF(ApprovedReportDetailsList list, boolean selectedReportStatus1) {
         float height, width;
         RegisterPatient registerPatients = list.getUserdetails().get(0);
-
+        boolean tableType = false;
         data = list;
         selectedReportStatus = selectedReportStatus1;
         //create a new document
@@ -143,12 +145,13 @@ public class PdfGenerator2 extends PdfPageEventHelper {
             initializeFonts();
             if (Heleprec.update) {
                 Log.e("s1", Heleprec.update + "");
+                if (Heleprec.repostlistmap.get(Heleprec.current_camp_name)!=null){
                 if (Heleprec.repostlistmap.get(Heleprec.current_camp_name).isHeader()) {
                     if (Heleprec.logo == null)
                         bmp2 = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.acclogo);
                     else
                         bmp2 = Heleprec.logo;
-                    if (bmp2!=null) {
+                    if (bmp2 != null) {
                         ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
 //                    Bitmap scaled = Bitmap.createScaledBitmap(bmp2, 150, 100, true);
                         // Log.d("BITMAP 2=",bmp2.toString());
@@ -171,6 +174,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                     ///// if (bmp2==null)
                     //  return;
                     document.add(addHeader(docWriter));
+                }
                 } else {
                     // document.setMarginMirroringTopBottom(true);
                     document.top(500.0f);
@@ -241,9 +245,10 @@ public class PdfGenerator2 extends PdfPageEventHelper {
             }
             ArrayList<String> all_package = new ArrayList<>();
             for (String key : map.keySet()) {
+                //Log.d("EXception  JS6767=", key.toString());
                 all_package.add(key);
             }
-            Log.e("no of pakage ", all_package.size() + "");
+            //Log.e("no of pakage ", all_package.size() + "");
             for (int i = 0; i < all_package.size(); i++) {
                 for (int j = 0; j < mSubTestDetails1.size(); j++) {
                     if (all_package.get(i).equals(mSubTestDetails1.get(j).getTest_head())) {
@@ -268,11 +273,14 @@ public class PdfGenerator2 extends PdfPageEventHelper {
             //mSubTestDetails.clear();
             ArrayList<ApprovedReportTestDetails> li2 = new ArrayList<>();
             Set<String> key = map.keySet();
+             listTestHead = new HashMap<>();
             for (String key1 : key) {
                 //  map.
                 //String current_pack=key.;
+
                 for (int j = 0; j < mSubTestDetails.size(); j++) {
                     if (mSubTestDetails.get(j).getTest_head().equals(key1)) {
+                        Log.d("EXception  JS2323=", key1.toString());
                         li2.add(mSubTestDetails.get(j));
                         // mSubTestDetails.add(mSubTestDetails.get(j));
                     }
@@ -286,20 +294,32 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                 String subTestHead = mSubTestDetails.get(0).getSubTest_head();
                 Log.d("PKG NAME =", packageName);
                 addPackageName(packageName,subTestHead, document);
-                Log.d("PKG NAME 1 =", packageName);
+
                 addEmptyLine(document, new Paragraph(), 1);
-                PdfPTable pdfPTable;
+                PdfPTable pdfPTable = null;
                 if (packageName.contains("SEROLOGY TEST")) {
                     pdfPTable = createTwoColumnTable();
                 } else {
-                    pdfPTable = createTable();
+                    Log.d("PKG Create TBL =", "CreateTAble");
+                      pdfPTable = createTable();
+/*
+                    if (!tableType) {
+                        Log.d("PKG NAME 90 =", packageName);
+                        pdfPTable = createTable();
+                    }
+                    else {}*/
                 }
+                //Log.d("PKG NAME PDF TBL =", pdfPTable.toString());
+
                 total_page = mSubTestDetails.size();
                 for (ApprovedReportTestDetails subTestDetails : mSubTestDetails) {
+                    Log.d("PKG NAME COUNT FOR =", "CUONT");
+                    // pdfPTable = createTableBlank();
+
                     if (!subTestDetails.getTest_head().equalsIgnoreCase(packageName)) {
                         packageName = subTestDetails.getTest_head();
                         subTestHead = subTestDetails.getSubTest_head();
-                        Log.d("PKG NAME 2 =", packageName);
+                        Log.d("PKG NAME TEST NAME =", subTestDetails.getTest_name());
                         document.add(pdfPTable);
 //                        ArrayList<String> l1=pri_map.get(packageName);
 //                        // if (ArrayList<String> l1=pri_map.put(packageName))
@@ -340,17 +360,63 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                         if (packageName.contains("SEROLOGY TEST")) {
                             pdfPTable = createTwoColumnTable();
                         } else {
+                            Log.d("PKG NAME TEST NAME22 =", "Create TAble called");
                             pdfPTable = createTable();
+
                         }
                     }
+
+                    Log.d("PKG NAME TEST NAME22 =", subTestDetails.getTest_name());
                     if (packageName.contains("SEROLOGY TEST")) {
                         addCellTwoColumn(pdfPTable, subTestDetails);
                     } else {
+                        //pdfPTable = createTableBlank();
+                        //pdfPTable = createTable();
+                        if (listTestHead.containsKey(subTestDetails.getTest_head())) {
+                            Log.d("PKGJS 11=", subTestDetails.getTest_head());
+                            if (!subTestDetails.getTest_precautions().equals("")) {
+                                if (!listTestHead.containsValue(subTestDetails.getTest_id())) {
+                                    pdfPTable = createTable();
+                                    Log.d("PKG TEST ELSE44 =", subTestDetails.getTest_id());
+                                    precause = true;
+                                }
+
+                            } else if (precause) {
+                               // pdfPTable = createTable();
+                                Log.d("PKGJS 44=", subTestDetails.getTest_head());
+                            } else {
+                                Log.d("PKGJS 55=", subTestDetails.getTest_head());
+                                //pdfPTable = createTable();
+                                precause = false;
+                            }
+                        }
+                        else {
+                            precause = false;
+                            Log.d("PKG TEST ELSE33 =", subTestDetails.getTest_id());
+                            listTestHead.put(subTestDetails.getTest_head(),subTestDetails.getTest_id());
+                                //pdfPTable = createTable();
+                                Log.d("PKGJS 33=", subTestDetails.getTest_head());
+                        }
                         addCell(pdfPTable, subTestDetails, patientGender);
+//                        if (tableType) {
+//                            pdfPTable = createTableBlank();
+//                            addCell(pdfPTable, subTestDetails, patientGender);
+//                        }
+//                        else {
+//                            tableType = true;
+//
+//                            Log.d("PKG NAME TEST102 =", "TEst");
+//                            addCell(pdfPTable, subTestDetails, patientGender);
+//                            pdfPTable = createTableBlank();
+//                        }
                     }
                 }
-                document.add(pdfPTable);
-                Log.e("no of time tbale add", "table");
+                if (!precause) {
+
+                    document.add(pdfPTable);
+                    Log.e("PKGJS = no of time", "table");
+                }
+
                 addEmptyLine(document, new Paragraph(), 1);
                 document.add(p);
             }
@@ -484,7 +550,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
         float[] columnWidths = {20f};
         PdfPTable table = new PdfPTable(columnWidths);
         //create PDF table with the given widths
-        addPackageName("Precaution & Interpretations", list.getSubTest_head() , document);
+        addPackageName("Precaution & Interpretations", "" , document);
         addEmptyLine(document, new Paragraph(), 1);
         Font font = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
         Paragraph para = new Paragraph("Precaution :", font);
@@ -748,9 +814,64 @@ public class PdfGenerator2 extends PdfPageEventHelper {
         table.addCell(Cell8);
         return table;
     }
+
+    private PdfPTable createTableBlank() {
+        float[] columnWidths = {5f, 5f, 5f, 5f};
+        //create PDF table with the given widths
+        PdfPTable table = new PdfPTable(columnWidths);
+        //table.(new SolidBorder(1));
+        // set table width a percentage of the page width
+        table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
+        table.setTotalWidth(950f);
+        Font font = new Font(Font.FontFamily.HELVETICA, 0, Font.BOLD);
+        Paragraph para = new Paragraph("", font);
+        // para.setLeading(0, 1);
+        //p1.setFont(boldFont);
+        PdfPCell cell = new PdfPCell(para);
+        // cell.addElement(para);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+//        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBorder(Rectangle.NO_BORDER);
+        // cell.setRightIndent(10);
+        table.addCell(cell);
+        //    p2.setFont(boldFont);
+        para = new Paragraph("", font);
+        cell = new PdfPCell(para);
+        //  cell.addElement(para);
+        cell.setBorder(Rectangle.NO_BORDER);
+        // cell.setRightIndent(10);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        table.addCell(cell);
+        //  Phrase p3=new Phrase("Units");
+        // p3.setFont(boldFont);
+        para = new Paragraph("", font);
+        cell = new PdfPCell(para);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        // cell.addElement(para);
+        cell.setBorder(Rectangle.NO_BORDER);
+        //cell.setRightIndent(10);
+        table.addCell(cell);
+        //   Phrase p4=new Phrase("Normal Range");
+        // p4.setFont(boldFont);
+        para = new Paragraph("", font);
+        cell = new PdfPCell(para);
+        //  cell.addElement(para);
+//        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBorder(Rectangle.NO_BORDER);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        // cell.setRightIndent(10);
+        table.addCell(cell);
+        table.setHeaderRows(1);
+        return table;
+    }
     private PdfPTable createTable() {
         float[] columnWidths = {5f, 5f, 5f, 5f};
         //create PDF table with the given widths
+
         PdfPTable table = new PdfPTable(columnWidths);
         //table.(new SolidBorder(1));
         // set table width a percentage of the page width
@@ -803,6 +924,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
     }
     private PdfPTable createTwoColumnTable() {
         float[] columnWidths = {5f, 5f};
+        Log.d("PKG NAME TEST NAME 101=", "");
         //create PDF table with the given widths
         PdfPTable table = new PdfPTable(columnWidths);
         // set table width a percentage of the page width
@@ -832,8 +954,30 @@ public class PdfGenerator2 extends PdfPageEventHelper {
         return table;
     }
     public void addCell(PdfPTable pdfPTable, ApprovedReportTestDetails subTestDetails, String patientGender) throws DocumentException {
+
+
+        if (!subTestDetails.getTest_precautions().equals("")) {
+            pdfPTable = createTable();
+            Log.d("PKG TEST hello TEst =", subTestDetails.getTest_id());
+        }
+        else {
+            if (precause){
+                //Log.d("PKG TEST ELSE11 =", subTestDetails.getTest_id());
+                if (!listTestHead.containsValue(subTestDetails.getTest_id())) {
+                   // precause = false;
+                    //pdfPTable = createTable();
+                    Log.d("PKG TEST ELSE hello  =", subTestDetails.getTest_id());
+                }
+                // precause = false;
+            }
+
+            //else document.add(pdfPTable);
+        }
+
         Font font = new Font(Font.FontFamily.HELVETICA, 8);
         Paragraph p1 = new Paragraph(subTestDetails.getTest_name(), font);
+        Log.d("PKG_PDF_NAME=", subTestDetails.getTest_name());
+        Log.d("PKG_PDF_ID=", subTestDetails.getTest_id());
         //   p1.setFont(font);
         PdfPCell Cell1 = new PdfPCell(p1);
         Cell1.setBorder(Rectangle.NO_BORDER);
@@ -848,21 +992,45 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                     PdfPCell celltwo = new PdfPCell(p2);
                     celltwo.setHorizontalAlignment(Element.ALIGN_LEFT);
                     celltwo.setBorder(Rectangle.NO_BORDER);
+                    celltwo.setVerticalAlignment(Element.ALIGN_CENTER);
                     celltwo.setRightIndent(10);
                     pdfPTable.addCell(celltwo);
-                } else
-                    addNumericReult(pdfPTable, subTestDetails);
+                    Log.d("PKG NAME TEST NAME 33=", subTestDetails.getTest_name());
+                } else {
+                    Log.d("PKG NAME TEST NAME 44=", subTestDetails.getTest_name());
+
+                    Paragraph p2 = new Paragraph(subTestDetails.getResult(), font);
+                    PdfPCell celltwo = new PdfPCell(p2);
+                    celltwo.setHorizontalAlignment(Element.ALIGN_LEFT);
+                    celltwo.setVerticalAlignment(Element.ALIGN_CENTER);
+                    celltwo.setBorder(Rectangle.NO_BORDER);
+                    celltwo.setRightIndent(10);
+                    pdfPTable.addCell(celltwo);
+                    //addNumericReult(pdfPTable, subTestDetails);
+                }
             } catch (Exception e) {
+                Log.d("PKG NAME TEST NAME 55=", subTestDetails.getTest_name());
                 Paragraph p2 = new Paragraph(subTestDetails.getResult(), font);
                 PdfPCell celltwo = new PdfPCell(p2);
                 celltwo.setHorizontalAlignment(Element.ALIGN_LEFT);
+                celltwo.setVerticalAlignment(Element.ALIGN_CENTER);
                 celltwo.setBorder(Rectangle.NO_BORDER);
                 celltwo.setRightIndent(10);
                 pdfPTable.addCell(celltwo);
             }
         } else {
-            addNumericReult(pdfPTable, subTestDetails);
+            Log.d("PKG NAME TEST NAME 66=", subTestDetails.getTest_name());
+            //addNumericReult(pdfPTable, subTestDetails);
             //  Log.e("not manual","you done sachin");
+
+
+            Paragraph p2 = new Paragraph(subTestDetails.getResult(), font);
+            PdfPCell celltwo = new PdfPCell(p2);
+            celltwo.setHorizontalAlignment(Element.ALIGN_LEFT);
+            celltwo.setVerticalAlignment(Element.ALIGN_CENTER);
+            celltwo.setBorder(Rectangle.NO_BORDER);
+            celltwo.setRightIndent(10);
+            pdfPTable.addCell(celltwo);
         }
         p1 = new Paragraph(subTestDetails.getUnit(), font);
         // p1.setFont(font);
@@ -891,15 +1059,34 @@ public class PdfGenerator2 extends PdfPageEventHelper {
         Cell3.setVerticalAlignment(Element.ALIGN_CENTER);
         Cell3.setHorizontalAlignment(Element.ALIGN_LEFT);
         PdfPCell gd1 = pdfPTable.addCell(Cell3);
+        Log.d("PKG TEST=", subTestDetails.getTest_precautions());
+        //document.add(pdfPTable);
         if (!subTestDetails.getTest_precautions().equals("")) {
+            Log.d("PKG TEST IFFNN =", subTestDetails.getTest_precautions());
+            precause = true;
             document.add(pdfPTable);
             addPri_inter(subTestDetails, 0);
-            this.pdfPTable = createTable();
+           this.pdfPTable = createTable();
         }
+        else {
+            if (precause){
+                //Log.d("PKG TEST ELSE11 =", subTestDetails.getTest_id());
+                if (!listTestHead.containsValue(subTestDetails.getTest_id())) {
+                    precause = false;
+                   // document.add(pdfPTable);
+                    Log.d("PKG TEST ELSE22  =", subTestDetails.getTest_id());
+                }
+               // precause = false;
+            }
+
+            //else document.add(pdfPTable);
+        }
+
     }
     public void addCellTwoColumn(PdfPTable pdfPTable, ApprovedReportTestDetails subTestDetails) throws DocumentException {
         Font font = new Font(Font.FontFamily.HELVETICA, 8);
         PdfPCell cell = new PdfPCell(new Paragraph(subTestDetails.getTest_name(), font));
+        Log.d("PKG NAME TEST NAME 77=", subTestDetails.getTest_name());
         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
         cell.setBorder(Rectangle.NO_BORDER);
         cell.setRightIndent(10);
@@ -910,12 +1097,15 @@ public class PdfGenerator2 extends PdfPageEventHelper {
         PdfPCell celltwo = new PdfPCell(new Paragraph(subTestDetails.getResult(), font));
         Log.e(subTestDetails.getResult(), "result");
         celltwo.setHorizontalAlignment(Element.ALIGN_LEFT);
+        celltwo.setVerticalAlignment(Element.ALIGN_CENTER);
         celltwo.setBorder(Rectangle.NO_BORDER);
-        celltwo.setRightIndent(10);
+       celltwo.setRightIndent(10);
         pdfPTable.addCell(celltwo);
+        //document.add(pdfPTable);
         if (!subTestDetails.getTest_precautions().equals("")) {
             document.add(pdfPTable);
             addPri_inter(subTestDetails, 0);
+            Log.d("PKG NAME 94 =", "packageName");
             this.pdfPTable = createTable();
         }
     }
@@ -1218,7 +1408,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                 }// pdfPTable.addCell(subTestDetails.getTest_low_bound_male() + "-" + subTestDetails.getTest_upper_bound_male());
             }
             if (b) {
-                Font boldFont = new Font(Font.FontFamily.HELVETICA, 8, Font.BOLD);
+                Font boldFont = new Font(Font.FontFamily.HELVETICA, 8);
                 //  pdfPTable.addCell(Html.toHtml(Html.fromHtml(reult)));
                 PdfPCell pdfWordCell = new PdfPCell();
                 // Phrase firstLine = new Phrase(subTestDetails.getResult().replaceAll("[^0-9.]", ""), boldFont);
@@ -1226,6 +1416,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                 pdfWordCell.setBorder(Rectangle.NO_BORDER);
                 pdfWordCell.addElement(firstLine);
                 pdfPTable.addCell(pdfWordCell);
+                Log.e("TESTJK is exception", "alfhanumeric");
             } else {
                 //Paragraph     p1 = new Paragraph(subTestDetails.getResult().replaceAll("[^0-9.]", ""), font);
                 Paragraph p1 = new Paragraph(subTestDetails.getResult());
@@ -1235,6 +1426,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                 pdfWordCell.setHorizontalAlignment(Element.ALIGN_LEFT);
                 pdfWordCell.setBorder(Rectangle.NO_BORDER);
                 pdfPTable.addCell(pdfWordCell);
+                Log.e("TESTJK 22 is exception", "alfhanumeric");
             }
         } catch (Exception e) {
             Log.e("error", e.getMessage());

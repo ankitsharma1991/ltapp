@@ -107,6 +107,9 @@ public class QCStatusAdapter extends  RecyclerView.Adapter<QCStatusAdapter.ViewH
 
     @Override
     public int getItemCount() {
+        if (list==null)
+            return 0;
+        else
         return list.size();
     }
     public static class ViewHolderc extends RecyclerView.ViewHolder
