@@ -249,6 +249,7 @@ public class ApprovedReportFragment extends BaseFragment implements RecyclerView
                         JSONObject object = new JSONObject(response);
                         Gson gn = new Gson();
                         final ApprovedReportDetailsList clist = gn.fromJson(response, ApprovedReportDetailsList.class);
+                        Log.d("RESJ=",clist.toString());
 
                         final AlertDialog dialod_reg = new AlertDialog.Builder(getContext()).create();
 
@@ -373,7 +374,7 @@ public class ApprovedReportFragment extends BaseFragment implements RecyclerView
                         JSONObject object = new JSONObject(response);
                         Gson gn = new Gson();
                         ApprovedReportDetailsList clist = gn.fromJson(response, ApprovedReportDetailsList.class);
-                        Log.d("arr", clist.toString());
+                        Log.d("RES NEW", clist.toString());
                         if (clist.getUserdetails().size() > 0) {
                             printpdf(clist, position);
 

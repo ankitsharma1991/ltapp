@@ -97,6 +97,7 @@ public class PdfGenerator2 extends PdfPageEventHelper {
     private final Context mContext;
     private boolean pdfStatus, selectedReportStatus;
     private HashMap<String,String> listTestHead;
+    HashMap<String, String> testHeadPrecation = new HashMap<>();
     private boolean precause;
     public PdfGenerator2(Context context) {
         mContext = context;
@@ -282,6 +283,8 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                     if (mSubTestDetails.get(j).getTest_head().equals(key1)) {
                         Log.d("EXception  JS2323=", key1.toString());
                         li2.add(mSubTestDetails.get(j));
+                        if (!mSubTestDetails.get(j).getTest_precautions().equals(""))
+                        testHeadPrecation.put(mSubTestDetails.get(j).getTest_head(),mSubTestDetails.get(j).getTest_precautions());
                         // mSubTestDetails.add(mSubTestDetails.get(j));
                     }
                 }
@@ -971,8 +974,17 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                 // precause = false;
             }
 
-            //else document.add(pdfPTable);
-        }
+            else {
+            // for (int k = 0;k<testHeadPrecation.size();k++){
+                 if (testHeadPrecation.containsKey(subTestDetails.getTest_head())){
+                     pdfPTable = createTable();
+                 }
+             //}
+
+
+
+            }
+            }
 
         Font font = new Font(Font.FontFamily.HELVETICA, 8);
         Paragraph p1 = new Paragraph(subTestDetails.getTest_name(), font);
@@ -1079,7 +1091,12 @@ public class PdfGenerator2 extends PdfPageEventHelper {
                // precause = false;
             }
 
-            //else document.add(pdfPTable);
+            else {
+                if (testHeadPrecation.containsKey(subTestDetails.getTest_head())){
+                    document.add(pdfPTable);
+                }
+
+            }
         }
 
     }
